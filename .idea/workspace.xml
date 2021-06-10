@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4fcea17d-ffdf-4c69-95fc-e086ff81fccf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/ARCADECLASSIC.TTF" beforeDir="false" afterPath="$PROJECT_DIR$/src/fonts/ARCADECLASSIC.TTF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/joystix monospace.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/fonts/joystix monospace.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/background.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sound/mainBacking.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/mainBacking.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ColorsFontsImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ColorsFontsImages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameBoard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/startMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/startMenu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +47,11 @@
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JoseFraireJr\Documents\GitHub\UltraTicTacToe\src" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.startMenu">
     <configuration name="startMenu (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -178,12 +190,23 @@
       <workItem from="1623266090473" duration="20227000" />
       <workItem from="1623297011132" duration="16401000" />
       <workItem from="1623320017621" duration="3577000" />
-      <workItem from="1623348254421" duration="7477000" />
+      <workItem from="1623348254421" duration="12347000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -199,7 +222,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UltraTicTacToe$textFormat.coverage" NAME="textFormat Coverage Results" MODIFIED="1623298238534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/UltraTicTacToe$startMenu__1_.coverage" NAME="startMenu (1) Coverage Results" MODIFIED="1623316459097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/UltraTicTacToe$startMenu.coverage" NAME="startMenu Coverage Results" MODIFIED="1623360015113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/UltraTicTacToe$startMenu.coverage" NAME="startMenu Coverage Results" MODIFIED="1623366544486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/UltraTicTacToe$test.coverage" NAME="test Coverage Results" MODIFIED="1623111084274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/UltraTicTacToe$textFormat__1_.coverage" NAME="textFormat (1) Coverage Results" MODIFIED="1623316614852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>

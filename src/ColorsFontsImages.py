@@ -4,6 +4,9 @@ class ColorsFontsImages:
     white = (255, 255, 255)
     black = (0, 0, 0)
     red = (200, 10, 10)
-    joystix = r'C:\Users\JoseFraireJr\Documents\Github\UltraTicTacToe\fonts\joystix monospace.ttf'
-    mainBackground = r'C:\Users\JoseFraireJr\Documents\Github\UltraTicTacToe\images\background.jpg'
-    music = 
+    joystix = r'fonts\joystix monospace.ttf'
+    mainBackground = r'images\background.jpg'
+    music1 = r'sound\mainBacking.mp3'
+    music2 = r'sound\hipHopOne.mp3'
+    music3 = r'sound\makeYaThink.mp3'
+    musicList = (music1, music2, music3)

@@ -13,11 +13,12 @@ class GameBoard:
 
     def iterateTurn(self):
         self.turnCount += 1
-
+        #todo
 
 
     def drawBoard(self):
-
+        pass
+        #todo
 
 def turn(board, num):
     if num % 2 == 1:
