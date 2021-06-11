@@ -5,7 +5,6 @@ class soundHandler:
     mixer.init()
     soundList = []
     for i in asset.soundList:
-        print(i)
         soundList.append(mixer.Sound(i))
     for i in soundList:
         i.set_volume(1.0)

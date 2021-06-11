@@ -1,6 +1,7 @@
 class ColorsFontsImages:
     neonPink = (255, 0, 170)
     darkPurple = (23, 12, 26)
+    purple = (230,160,230)
     white = (255, 255, 255)
     black = (0, 0, 0)
     red = (200, 10, 10)
@@ -11,7 +12,7 @@ class ColorsFontsImages:
     music1 = r'sound\mainBacking.mp3'
     music2 = r'sound\hipHopOne.mp3'
     music3 = r'sound\makeYaThink.mp3'
-    musicList = (music1, music2, music3)
+    musicList = (music1,)
     sound1 = r'sound\click.wav'
     sound2 = r'sound\click2.wav'
     sound3 = r'sound\gameOver.wav'
