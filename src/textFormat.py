@@ -200,6 +200,7 @@ class textFormat:
         tempFont = self.font
         tempRectHeight = self.rectHeight
         tempRectWidth = self.rectWidth
+        tempTextPos = self.textPos
         if self.enlargeAmount != 0:
             self.highlightEnlarge()
         if self.hasSurroundRect:
@@ -212,6 +213,7 @@ class textFormat:
         self.outText = self.textSize()
         self.rectWidth = tempRectWidth
         self.rectHeight = tempRectHeight
+        self.textPos = tempTextPos
         self.rectPos = self.reposition()
 
     def isHovering(self, mousePos=None):
@@ -251,7 +253,14 @@ class textFormat:
         diffHeight = self.outText.get_height() - oldTextHeight
         self.rectWidth += diffWidth
         self.rectHeight += diffHeight
+        self.textPos = (self.textPos[0] - diffWidth / 2, self.textPos[1] - diffHeight / 2)
         self.rectPos = self.reposition()
 
     def toString(self):
-        return self.textString
+        attributes = (self.textString, self.rectHeight, self.rectLineWidth, self.hasSurroundRect, self.rectWidth, self.textPos, self.textColor,
+                      self.rectColor, self.useBackColor, self.backColor, self.hoverBrightness, self.font, self.horizontalAlignment,
+                      self.verticalAlignment, self.outText, self.rectPos)
+        string = ""
+        for i in attributes:
+            string += str(i)
+        return string

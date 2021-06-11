@@ -1,5 +1,6 @@
 import pygame
 from musicHandler import musicHandler
+from soundHandler import soundHandler
 from ColorsFontsImages import ColorsFontsImages as asset
 from ButtonAssets import ButtonAssets as Buttons
 from pygame.locals import (
@@ -9,23 +10,26 @@ from pygame.locals import (
     QUIT,
 )
 
-musicOn = True
-musicHandler.musicLoop(None)
+musicHandler.musicLoop()
 clock = pygame.time.Clock()
 pygame.init()
 screenSize = (500, 475)
 screen = pygame.display.set_mode(screenSize, pygame.NOFRAME)
 mainBackground = pygame.image.load(asset.mainBackground)
 
+def setVol(vol):
+    soundHandler.setVolume(None, vol)
+    musicHandler.setVolume(None, vol)
 
 def close():
     pygame.quit()
 
 def checkMusic():
-    if musicOn:
-        musicHandler.musicLoop(None)
+    if musicHandler.musicOn:
+        musicHandler.on()
+        musicHandler.musicLoop()
     else:
-        musicHandler.stop(None)
+        musicHandler.off()
 
 def checkButtons(Buttons, hoveringButtons):
     for button in Buttons.buttonList:
@@ -50,9 +54,11 @@ def startScreenLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 elif startButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICK2SOUND)
                     gameLoop()
                     return False
                 elif optionButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICK2SOUND)
                     optionLoop()
                     return False
         return True
@@ -84,6 +90,7 @@ def gameLoop():
     gameButtons = Buttons(screen)
     exitButton = gameButtons.exitButton()
     pauseButton = gameButtons.pauseButton()
+    inProgressButton = gameButtons.inProgressButton()
 
     def checkEvents():
         for event in pygame.event.get():
@@ -94,6 +101,7 @@ def gameLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if pauseButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICKSOUND)
                     return pauseLoop(gameButtons)
         return True
 
@@ -117,9 +125,9 @@ def pauseLoop(gameButtons):
     pauseButtons = Buttons(screen)
     pauseButton = pauseButtons.pauseButton()
     exitButton = pauseButtons.exitButton()
-    optionButton = pauseButtons.optionButton()
     continueButton = pauseButtons.continueButton()
     mainMenuButton = pauseButtons.mainMenuButton()
+    pauseText = pauseButtons.pauseText()
 
     def checkEvents():
         for event in pygame.event.get():
@@ -128,15 +136,15 @@ def pauseLoop(gameButtons):
                     return True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pauseButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICK2SOUND)
                     return True
                 if continueButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICK2SOUND)
                     return True
                 if exitButton.toString() in hoveringButtons:
                     return False
-                if optionButton.toString() in hoveringButtons:
-                    optionLoop()
-                    return False
                 if mainMenuButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICKSOUND)
                     startScreenLoop()
                     return False
 
@@ -148,10 +156,11 @@ def pauseLoop(gameButtons):
             break
         s.fill(asset.darkPurple)
         screen.blit(s, (0, 25))
+        pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
         for button in gameButtons.buttonList:
-            if button.toString() != "||":
+            if button.toString() != pauseButton.toString():
                 button.show()
-        s.fill((asset.darkPurple[0], asset.darkPurple[1], asset.darkPurple[2], 90))
+        s.fill((asset.darkPurple[0], asset.darkPurple[1], asset.darkPurple[2], 190))
         screen.blit(s, (0, 25))
         checkButtons(pauseButtons, hoveringButtons)
         pygame.display.flip()
@@ -163,6 +172,12 @@ def optionLoop():
     optionButtons = Buttons(screen)
     exitButton = optionButtons.exitButton()
     backButton = optionButtons.backButton()
+    musicText = optionButtons.musicText()
+    soundText = optionButtons.soundText()
+    soundCheckBox = optionButtons.soundCheckBox()
+    musicCheckBox = optionButtons.musicCheckBox()
+    soundCheckBox.check(soundHandler.soundOn)
+    musicCheckBox.check(musicHandler.musicOn)
 
     def checkEvents():
         for event in pygame.event.get():
@@ -173,8 +188,27 @@ def optionLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if backButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICKSOUND)
                     startScreenLoop()
                     return False
+                if musicCheckBox.toString() in hoveringButtons or musicText.toString() in hoveringButtons:
+                    musicHandler.musicSwitch()
+                    if musicHandler.musicOn:
+                        soundHandler.playSound(None, asset.CLICK2SOUND)
+                    else:
+                        soundHandler.playSound(None, asset.CLICKSOUND)
+                    musicCheckBox.check(musicHandler.musicOn)
+                    return True
+                if soundCheckBox.toString() in hoveringButtons or soundText.toString() in hoveringButtons:
+                    soundHandler.soundSwitch()
+                    if soundHandler.soundOn:
+                        soundHandler.on()
+                        soundHandler.playSound(None, asset.CLICK2SOUND)
+                    else:
+                        soundHandler.off()
+                        soundHandler.playSound(None, asset.CLICKSOUND)
+                    soundCheckBox.check(soundHandler.soundOn)
+                    return True
         return True
 
     while True:

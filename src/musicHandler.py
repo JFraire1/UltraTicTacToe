@@ -5,8 +5,24 @@ class musicHandler():
     mixer.init()
     trackNum = 0
     trackList = asset.musicList
+    musicOn = True
+    volume = 1.0
 
-    def musicLoop(self):
+    def setVolume(self, vol):
+        mixer.music.set_volume(vol)
+        musicHandler.volume = vol
+
+    def off(self=None):
+        mixer.music.set_volume(0.0)
+
+    def on(self=None):
+        mixer.music.set_volume(musicHandler.volume)
+
+    def musicSwitch(self=None):
+        musicHandler.musicOn = not musicHandler.musicOn
+        return musicHandler.musicOn
+
+    def musicLoop(self=None):
         if mixer.music.get_busy():
             return
         else:
@@ -15,7 +31,6 @@ class musicHandler():
             mixer.music.play(0,0,10)
             musicHandler.trackNum += 1
 
-    def stop(self):
+    def stop(self=None):
         if mixer.music.get_busy():
             mixer.music.stop()
-
