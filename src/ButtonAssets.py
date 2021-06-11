@@ -39,3 +39,31 @@ class ButtonAssets:
                           485, 4, asset.white, asset.red, 50, -2, -1, -1)
         self.buttonList.append(temp)
         return temp
+
+    def backButton(self):
+        temp = textFormat(self.screen, "Back", True, 8, 8, 4, False, asset.black, -1, -1,
+                          (asset.joystix, 15), 5, 30, asset.white, asset.neonPink, 255, 2,
+                          -1, -1)
+        self.buttonList.append(temp)
+        return temp
+
+    def pauseButton(self):
+        temp = textFormat(self.screen, "||", True, 8, 8, 4, False, asset.black, -1, -1,
+                          (asset.joystix, 15), 5, 30, asset.white, asset.neonPink, 255, 2,
+                          -1, -1)
+        self.buttonList.append(temp)
+        return temp
+
+    def continueButton(self):
+        temp = textFormat(self.screen, "Continue", True, 8, -1, 4, False, asset.black, -1, 120,
+                          (asset.joystix, 15), 0, 215, asset.white, asset.neonPink, 255, 2,
+                          textFormat.ALIGNMENTCENTER, -1)
+        self.buttonList.append(temp)
+        return temp
+
+    def mainMenuButton(self):
+        temp = textFormat(self.screen, "Main Menu", True, 8, -1, 4, False, asset.black, -1, 120,
+                          (asset.joystix, 15), 0, 335, asset.white, asset.neonPink, 255, 2,
+                          textFormat.ALIGNMENTCENTER, -1)
+        self.buttonList.append(temp)
+        return temp

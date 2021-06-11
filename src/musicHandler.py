@@ -14,3 +14,8 @@ class musicHandler():
             mixer.music.load(musicHandler.trackList[musicHandler.trackNum])
             mixer.music.play(0,0,10)
             musicHandler.trackNum += 1
+
+    def stop(self):
+        if mixer.music.get_busy():
+            mixer.music.stop()
+
