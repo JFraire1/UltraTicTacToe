@@ -96,7 +96,8 @@ def gameLoop():
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    return False
+                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    return pauseLoop(gameButtons)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if exitButton.toString() in hoveringButtons:
                     return False
@@ -133,6 +134,7 @@ def pauseLoop(gameButtons):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    soundHandler.playSound(None, asset.CLICK2SOUND)
                     return True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pauseButton.toString() in hoveringButtons:
