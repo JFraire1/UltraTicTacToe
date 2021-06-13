@@ -1,5 +1,6 @@
 from textFormat import textFormat
 from checkBox import checkBox
+from slider import Slider
 from ColorsFontsImages import ColorsFontsImages as asset
 
 class ButtonAssets:
@@ -23,14 +24,14 @@ class ButtonAssets:
 
     def startButton(self):
         temp = textFormat(self.screen, "Start", True, 8, -1, 4, False, asset.black, -1, 120,
-                          (asset.joystix, 15), 0, 215, asset.white, asset.neonPink, 255, 2,
+                          (asset.joystix, 15), 0, 240, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1)
         self.buttonList.append(temp)
         return temp
 
     def optionButton(self):
         temp = textFormat(self.screen, "Options", True, 8, -1, 4, False, asset.black, -1, 120,
-                          (asset.joystix, 15), 0, 275, asset.white, asset.neonPink, 255, 2,
+                          (asset.joystix, 15), 0, 300, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1)
         self.buttonList.append(temp)
         return temp
@@ -57,14 +58,14 @@ class ButtonAssets:
 
     def continueButton(self):
         temp = textFormat(self.screen, "Continue", True, 8, -1, 4, False, asset.black, -1, 120,
-                          (asset.joystix, 15), 0, 215, asset.white, asset.neonPink, 255, 2,
+                          (asset.joystix, 15), 0, 240, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1)
         self.buttonList.append(temp)
         return temp
 
     def mainMenuButton(self):
         temp = textFormat(self.screen, "Main Menu", True, 8, -1, 4, False, asset.black, -1, 120,
-                          (asset.joystix, 15), 0, 275, asset.white, asset.neonPink, 255, 2,
+                          (asset.joystix, 15), 0, 300, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1)
         self.buttonList.append(temp)
         return temp
@@ -85,27 +86,33 @@ class ButtonAssets:
 
     def musicText(self):
         temp = textFormat(self.screen, "Music: ", False, 0, 0, 0,
-                          False, asset.black, -1, -1, (asset.joystix, 20), 143, 170,
+                          False, asset.black, -1, -1, (asset.joystix, 20), 167, 160,
                           asset.neonPink, (100, 100, 100), 50, 0, -1, -1)
         self.buttonList.append(temp)
         return temp
 
     def musicCheckBox(self):
         temp = checkBox(self.screen, True, "X", True, -1, -1, 4, False, asset.white, 20,
-                 20, (asset.joystix, 40), 272, 159.6, asset.white, asset.neonPink,-20, 3,-1,-1)
+                 20, (asset.joystix, 40), 296, 149.6, asset.white, asset.neonPink,-20, 3,-1,-1)
         self.buttonList.append(temp)
         return temp
 
     def soundText(self):
         temp = textFormat(self.screen, "Effects: ", False, 0, 0, 0,
-                          False, asset.black, -1, -1, (asset.joystix, 20), 125, 240,
+                          False, asset.black, -1, -1, (asset.joystix, 20), 156, 230,
                           asset.neonPink, (100, 100, 100), 50, 0, -1, -1)
         self.buttonList.append(temp)
         return temp
 
     def soundCheckBox(self):
         temp = checkBox(self.screen, True, "X", True, -1, -1, 4, False, asset.white, 20,
-                        20, (asset.joystix, 40), 272, 229.6, asset.white, asset.neonPink, -20, 3, -1, -1)
+                        20, (asset.joystix, 40), 303, 219.6, asset.white, asset.neonPink, -20, 3, -1, -1)
+        self.buttonList.append(temp)
+        return temp
+
+    def soundSlider(self):
+        temp = Slider(self.screen, 0, 300, Slider.ALIGNMENTCENTER, -1, asset.neonPink, asset.black, True, asset.white,
+                      300, 12, Slider.DRAGRECTANGLE, asset.white, 30, 22, 14, 1.0, 3, 2)
         self.buttonList.append(temp)
         return temp
 

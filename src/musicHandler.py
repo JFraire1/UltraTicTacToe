@@ -9,8 +9,9 @@ class musicHandler():
     volume = 1.0
 
     def setVolume(self, vol):
-        mixer.music.set_volume(vol)
         musicHandler.volume = vol
+        if musicHandler.musicOn:
+            mixer.music.set_volume(vol)
 
     def off(self=None):
         mixer.music.set_volume(0.0)

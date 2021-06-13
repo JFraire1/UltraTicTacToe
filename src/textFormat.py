@@ -217,13 +217,10 @@ class textFormat:
         self.rectPos = self.reposition()
 
     def isHovering(self, mousePos=None):
-        if mousePos == None:
+        if mousePos is None:
             mousePos = pygame.mouse.get_pos()
-        if self.rectLeftBound <= mousePos[0] <= self.rectRightBound and self.rectUpperBound <= mousePos[
-            1] <= self.rectLowerBound:
+        if self.rectLeftBound <= mousePos[0] <= self.rectRightBound and self.rectUpperBound <= mousePos[1] <= self.rectLowerBound:
             return True
-        else:
-            return False
 
     def checkBackColor(self):
         if self.useBackColor:

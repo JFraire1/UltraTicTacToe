@@ -171,6 +171,7 @@ def pauseLoop(gameButtons):
 
 
 def optionLoop():
+    canDragSound = False
     optionButtons = Buttons(screen)
     exitButton = optionButtons.exitButton()
     backButton = optionButtons.backButton()
@@ -178,15 +179,24 @@ def optionLoop():
     soundText = optionButtons.soundText()
     soundCheckBox = optionButtons.soundCheckBox()
     musicCheckBox = optionButtons.musicCheckBox()
+    soundSlider = optionButtons.soundSlider()
     soundCheckBox.check(soundHandler.soundOn)
     musicCheckBox.check(musicHandler.musicOn)
+    soundSlider.setValueInit(soundHandler.volume)
 
     def checkEvents():
+        global canDragSound
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     return False
             if event.type == pygame.MOUSEBUTTONDOWN:
+                if soundSlider.toString() in hoveringButtons:
+                    canDragSound = True
+                    soundSlider.setDragged(True)
+                    soundSlider.setValue()
+                    soundHandler.setVolume(None, soundSlider.value)
+                    musicHandler.setVolume(None, soundSlider.value)
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if backButton.toString() in hoveringButtons:
@@ -211,6 +221,16 @@ def optionLoop():
                         soundHandler.playSound(None, asset.CLICKSOUND)
                     soundCheckBox.check(soundHandler.soundOn)
                     return True
+            if event.type == pygame.MOUSEMOTION:
+                if canDragSound:
+                    soundSlider.setDragged(True)
+                    soundSlider.setDragged(True)
+                    soundSlider.setValue()
+                    soundHandler.setVolume(None, soundSlider.value)
+                    musicHandler.setVolume(None, soundSlider.value)
+            if event.type == pygame.MOUSEBUTTONUP:
+                canDragSound = False
+                soundSlider.setDragged(False)
         return True
 
     while True:

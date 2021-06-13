@@ -19,8 +19,8 @@ class soundHandler:
             soundHandler.soundList[index].play()
 
     def setVolume(self, vol):
-        if vol >= 0:
-            soundHandler.volume = vol
+        soundHandler.volume = vol
+        if soundHandler.soundOn:
             for i in soundHandler.soundList:
                 i.set_volume(vol)
 
