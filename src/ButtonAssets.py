@@ -37,8 +37,8 @@ class ButtonAssets:
         return temp
 
     def exitButton(self):
-        temp = textFormat(self.screen, "X", True, 7, 6, 0, False, asset.black, -1, -1, ("Calibri Bold", 27),
-                          485, 4, asset.white, asset.red, 50, 2, -1, -1, textFormat.ENLARGELEFT)
+        temp = textFormat(self.screen, "X", True, 1, 10, 0, False, asset.black, -1, -1, (asset.joystix, 20),
+                          478, 1, asset.white, asset.red, 50, 2, -1, -1, textFormat.ENLARGELEFT)
         self.buttonList.append(temp)
         return temp
 
