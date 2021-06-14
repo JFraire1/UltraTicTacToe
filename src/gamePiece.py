@@ -1,0 +1,1 @@
+#todo class for game pieces, stores size and color

@@ -55,7 +55,7 @@ def startScreenLoop():
                     return False
                 elif startButton.toString() in hoveringButtons:
                     soundHandler.playSound(None, asset.CLICK2SOUND)
-                    gameLoop()
+                    preGameLoop()
                     return False
                 elif optionButton.toString() in hoveringButtons:
                     soundHandler.playSound(None, asset.CLICK2SOUND)
@@ -84,6 +84,47 @@ def startScreenLoop():
         flashTimer += 1
         pygame.display.flip()
         clock.tick(120)
+
+def preGameLoop():
+    preGameButtons = Buttons(screen)
+    exitButton = preGameButtons.exitButton()
+    backButton = preGameButtons.backButton()
+    startGameButton = preGameButtons.startGameButton()
+
+    def checkEvents():
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    return False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if exitButton.toString() in hoveringButtons:
+                    return False
+                if startGameButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    gameLoop()
+                    return False
+                if backButton.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    startScreenLoop()
+                    return False
+        return True
+
+    while True:
+        checkMusic()
+        hoveringButtons = preGameButtons.buttonsHovering()
+        running = checkEvents()
+        if not running:
+            close()
+            break
+
+        screen.blit(mainBackground, (0, 25))
+        pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
+
+        checkButtons(preGameButtons, hoveringButtons)
+
+        pygame.display.flip()
+        clock.tick(120)
+
 
 
 def gameLoop():
@@ -171,7 +212,6 @@ def pauseLoop(gameButtons):
 
 
 def optionLoop():
-    canDragSound = False
     optionButtons = Buttons(screen)
     exitButton = optionButtons.exitButton()
     backButton = optionButtons.backButton()
@@ -185,14 +225,12 @@ def optionLoop():
     soundSlider.setValueInit(soundHandler.volume)
 
     def checkEvents():
-        global canDragSound
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     return False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if soundSlider.toString() in hoveringButtons:
-                    canDragSound = True
                     soundSlider.setDragged(True)
                     soundSlider.setValue()
                     soundHandler.setVolume(None, soundSlider.value)
@@ -222,14 +260,12 @@ def optionLoop():
                     soundCheckBox.check(soundHandler.soundOn)
                     return True
             if event.type == pygame.MOUSEMOTION:
-                if canDragSound:
-                    soundSlider.setDragged(True)
+                if soundSlider.beingDragged:
                     soundSlider.setDragged(True)
                     soundSlider.setValue()
                     soundHandler.setVolume(None, soundSlider.value)
                     musicHandler.setVolume(None, soundSlider.value)
             if event.type == pygame.MOUSEBUTTONUP:
-                canDragSound = False
                 soundSlider.setDragged(False)
         return True
 

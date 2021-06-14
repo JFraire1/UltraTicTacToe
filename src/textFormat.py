@@ -11,11 +11,15 @@ class textFormat:
 
     ALIGNMENTNONE = -1
 
+    ENLARGENOMOVEMENT = 0
+    ENLARGELEFT = 1
+    ENLARGERIGHT = 2
+
     def __init__(self, screen, text="Hello", hasSurroundRect=False, verticalPadding=0, horizontalPadding=0,
                  rectLineWidth=0, useBackColor=False, backColor=(0, 0, 0), rectHeight=-1, rectWidth=-1,
                  font=("Corbel", 35), x=0, y=0,
                  color=(255, 255, 255), rectColor=(100, 100, 100), hoverBrightness=50, enlargeAmount=0,
-                 horizontalAlignment=-1, verticalAlignment=-1):
+                 horizontalAlignment=-1, verticalAlignment=-1, directionEnlarge=ENLARGENOMOVEMENT):
         self.screen = screen
         self.textString = text
         self.rectHeight = rectHeight
@@ -41,6 +45,7 @@ class textFormat:
         self.rectUpperBound = self.rectPos[1]
         self.rectLowerBound = self.rectPos[1] + self.rectHeight
         self.enlargeAmount = enlargeAmount
+        self.directionEnlarge = directionEnlarge
 
     def setBounds(self, rectPos):
         self.rectLeftBound = rectPos[0]
@@ -250,7 +255,10 @@ class textFormat:
         diffHeight = self.outText.get_height() - oldTextHeight
         self.rectWidth += diffWidth
         self.rectHeight += diffHeight
-        self.textPos = (self.textPos[0] - diffWidth / 2, self.textPos[1] - diffHeight / 2)
+        if self.directionEnlarge == textFormat.ENLARGENOMOVEMENT:
+            self.textPos = (self.textPos[0] - diffWidth / 2, self.textPos[1] - diffHeight / 2)
+        elif self.directionEnlarge == textFormat.ENLARGELEFT:
+            self.textPos = (self.textPos[0] - diffWidth , self.textPos[1])
         self.rectPos = self.reposition()
 
     def toString(self):
