@@ -150,7 +150,6 @@ class ButtonAssets:
                         15, (asset.joystix, 35), 15, 200, asset.white, asset.neonPink,
                         -20, 3, -1, -1)
         self.buttonList.append(temp)
-        print(temp.textPos)
         return temp
 
     def XCheckP2(self):
@@ -175,7 +174,14 @@ class ButtonAssets:
         return temp
 
     def turnSlot(self):
-        temp = turnSlot(self.screen, 100, 100)
+        temp = turnSlot(self.screen, 225, 185)
+        self.buttonList.append(temp)
+        return temp
+
+    def spinButton(self):
+        temp = textFormat(self.screen, "Spin", True, 8, 20, 4, False, asset.black, -1, -1,
+                          (asset.joystix, 12), 0, 240, asset.white, asset.neonPink, 255, 2,
+                          textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp)
         return temp
 

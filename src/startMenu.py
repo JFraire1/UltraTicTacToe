@@ -4,6 +4,7 @@ from soundHandler import soundHandler
 from ColorsFontsImages import ColorsFontsImages as asset
 from ButtonAssets import ButtonAssets as Buttons
 from colorPickerHandler import colorPickerHandler
+from turnSlot import turnSlot
 from gamePiece import gamePiece
 from pygame.locals import (
     RLEACCEL,
@@ -11,7 +12,6 @@ from pygame.locals import (
     KEYDOWN,
     QUIT,
 )
-
 musicHandler.musicLoop()
 clock = pygame.time.Clock()
 pygame.init()
@@ -115,8 +115,24 @@ def preGameLoop():
     xCheckP2.check(False)
     selectScreenText = preGameButtons.selectScreenText()
     slot = preGameButtons.turnSlot()
+    spinButton = preGameButtons.spinButton()
 
     def checkEvents():
+        if slot.doneSpinning:
+            if slot.result == turnSlot.P1SELECT:
+                soundHandler.playSound(None, asset.GLITCHSOUND)
+                xCheckP2.check(False)
+                xCheckP1.check(True)
+                P2Display.setFace(gamePiece.OFACE)
+                P1Display.setFace(gamePiece.XFACE)
+            else:
+                soundHandler.playSound(None, asset.GLITCHSOUND)
+                xCheckP1.check(False)
+                xCheckP2.check(True)
+                P1Display.setFace(gamePiece.OFACE)
+                P2Display.setFace(gamePiece.XFACE)
+            slot.valueUpdated()
+            return True
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
@@ -161,6 +177,9 @@ def preGameLoop():
                 if P2Display.toString() in hoveringButtons:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     P2Display.cycleSize()
+                    return True
+                if spinButton.toString() in hoveringButtons:
+                    slot.spin()
                     return True
                 if hoveringColorsP1:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
