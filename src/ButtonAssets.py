@@ -1,7 +1,7 @@
+from ColorsFontsImages import ColorsFontsImages as asset
 from textFormat import textFormat
 from checkBox import checkBox
 from slider import Slider
-from ColorsFontsImages import ColorsFontsImages as asset
 
 class ButtonAssets:
     def __init__(self, screen):
@@ -126,14 +126,14 @@ class ButtonAssets:
 
     def alignmentCheck(self):
         temp = textFormat(self.screen, "", True, -1, -1, 0,
-                          False, asset.neonPink, 10, 200, (asset.joystix, 35), 0, 200,
+                          False, asset.neonPink, 5, 400, (asset.joystix, 35), 0, 200,
                           asset.neonPink, asset.neonPink, 50, 0, textFormat.ALIGNMENTCENTER, -1)
         self.buttonList.append(temp)
         return temp
 
     def alignmentCheck2(self):
         temp = textFormat(self.screen, "", True, -1, -1, 0,
-                          False, asset.neonPink, 200, 1, (asset.joystix, 35), 0, 200,
+                          False, asset.neonPink, 400, 5, (asset.joystix, 35), 0, 200,
                           asset.neonPink, asset.neonPink, 50, 0, textFormat.ALIGNMENTCENTER, -1)
         self.buttonList.append(temp)
         return temp

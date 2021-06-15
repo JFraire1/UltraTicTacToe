@@ -5,8 +5,12 @@ class ColorsFontsImages:
     white = (255, 255, 255)
     black = (0, 0, 0)
     red = (200, 10, 10)
+    blue = (10, 10, 200)
+    yellow = (255, 255, 0)
+    orange = (255, 171, 0)
+    green = (43, 175, 43)
     gray = (100, 100, 100)
-    lightgray = (190, 190, 190)
+    lightGray = (190, 190, 190)
     joystix = r'fonts\joystix monospace.ttf'
     mainBackground = r'images\background.jpg'
     music1 = r'sound\mainBacking.mp3'
@@ -16,7 +20,9 @@ class ColorsFontsImages:
     sound1 = r'sound\click.wav'
     sound2 = r'sound\click2.wav'
     sound3 = r'sound\gameOver.wav'
-    soundList = (sound1, sound2, sound3)
+    sound4 = r'sound\glitch.wav'
+    soundList = (sound1, sound2, sound3, sound4)
     CLICKSOUND = 0
     CLICK2SOUND = 1
     GAMEOVERSOUND = 2
+    GLITCHSOUND = 3

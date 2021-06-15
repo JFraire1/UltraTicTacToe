@@ -3,6 +3,7 @@ from musicHandler import musicHandler
 from soundHandler import soundHandler
 from ColorsFontsImages import ColorsFontsImages as asset
 from ButtonAssets import ButtonAssets as Buttons
+from colorPickerHandler import colorPickerHandler
 from pygame.locals import (
     RLEACCEL,
     K_ESCAPE,
@@ -10,6 +11,7 @@ from pygame.locals import (
     QUIT,
 )
 
+musicHandler.musicSwitch()
 musicHandler.musicLoop()
 clock = pygame.time.Clock()
 pygame.init()
@@ -90,6 +92,22 @@ def preGameLoop():
     exitButton = preGameButtons.exitButton()
     backButton = preGameButtons.backButton()
     startGameButton = preGameButtons.startGameButton()
+    colorPickersP1 = colorPickerHandler(screen)
+    colorPickerP1Red = colorPickersP1.colorPickerP1Red()
+    colorPickerP1Blue = colorPickersP1.colorPickerP1Blue()
+    colorPickerP1Green = colorPickersP1.colorPickerP1Green()
+    colorPickerP1Orange = colorPickersP1.colorPickerP1Orange()
+    colorPickersP2 = colorPickerHandler(screen)
+    colorPickerP2Red = colorPickersP2.colorPickerP2Red()
+    colorPickerP2Blue = colorPickersP2.colorPickerP2Blue()
+    colorPickerP2Green = colorPickersP2.colorPickerP2Green()
+    colorPickerP2Orange = colorPickersP2.colorPickerP2Orange()
+    colorPickersP2.selectColor(colorPickerP2Blue.color)
+    colorPickersP1.banColor(colorPickerP2Blue.color)
+    colorPickersP1.selectColor(colorPickerP1Red.color)
+    colorPickersP2.banColor(colorPickerP1Red.color)
+    testP1Display = preGameButtons.startButton() # replace with button initialization and initial color change
+    testP2Display = preGameButtons.optionButton() # replace with button initialization and initial color change
 
     def checkEvents():
         for event in pygame.event.get():
@@ -107,10 +125,24 @@ def preGameLoop():
                     soundHandler.playSound(None, asset.CLICKSOUND)
                     startScreenLoop()
                     return False
+                if hoveringColorsP1:
+                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    color = hoveringColorsP1[0].split("-")[0]
+                    if colorPickersP1.selectColor(color):
+                        testP1Display.setTextColor(colorPickersP1.selectedColor) # replace with piece color change
+                        colorPickersP2.banColor(color)
+                if hoveringColorsP2:
+                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    color = hoveringColorsP2[0].split("-")[0]
+                    if colorPickersP2.selectColor(color):
+                        testP2Display.setTextColor(colorPickersP2.selectedColor) # replace with piece color change
+                        colorPickersP1.banColor(color)
         return True
 
     while True:
         checkMusic()
+        hoveringColorsP1 = colorPickersP1.colorsHovering()
+        hoveringColorsP2 = colorPickersP2.colorsHovering()
         hoveringButtons = preGameButtons.buttonsHovering()
         running = checkEvents()
         if not running:
@@ -120,6 +152,8 @@ def preGameLoop():
         screen.blit(mainBackground, (0, 25))
         pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
 
+        checkButtons(colorPickersP1, hoveringColorsP1)
+        checkButtons(colorPickersP2, hoveringColorsP2)
         checkButtons(preGameButtons, hoveringButtons)
 
         pygame.display.flip()

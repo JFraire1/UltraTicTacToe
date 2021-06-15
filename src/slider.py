@@ -79,7 +79,7 @@ class Slider:
         if self.dragShape == Slider.DRAGRECTANGLE:
             return self.dragPos, self.dragPos + self.dragWidth, self.dragY, self.dragY + self.dragHeight
         else:
-            return self.dragPos, self.dragPos + self.dragSize, self.dragY, self.dragY + self.dragSize
+            return self.dragPos - self.dragSize, self.dragPos + self.dragSize, self._getMidY() - self.dragSize, self._getMidY() + self.dragSize
 
     def _setDragPos(self):  # inside use only
         if self.dragShape == Slider.DRAGRECTANGLE:
