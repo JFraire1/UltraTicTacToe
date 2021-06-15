@@ -26,3 +26,4 @@ class ColorsFontsImages:
     CLICK2SOUND = 1
     GAMEOVERSOUND = 2
     GLITCHSOUND = 3
+

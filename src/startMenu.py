@@ -4,6 +4,7 @@ from soundHandler import soundHandler
 from ColorsFontsImages import ColorsFontsImages as asset
 from ButtonAssets import ButtonAssets as Buttons
 from colorPickerHandler import colorPickerHandler
+from gamePiece import gamePiece
 from pygame.locals import (
     RLEACCEL,
     K_ESCAPE,
@@ -11,7 +12,6 @@ from pygame.locals import (
     QUIT,
 )
 
-musicHandler.musicSwitch()
 musicHandler.musicLoop()
 clock = pygame.time.Clock()
 pygame.init()
@@ -106,8 +106,9 @@ def preGameLoop():
     colorPickersP1.banColor(colorPickerP2Blue.color)
     colorPickersP1.selectColor(colorPickerP1Red.color)
     colorPickersP2.banColor(colorPickerP1Red.color)
-    testP1Display = preGameButtons.startButton() # replace with button initialization and initial color change
-    testP2Display = preGameButtons.optionButton() # replace with button initialization and initial color change
+    P1Display = preGameButtons.gamePiece(gamePiece.XFACE, colorPickersP1.selectedColor, gamePiece.SIZELARGE, 95, 200)
+    P2Display = preGameButtons.gamePiece(gamePiece.OFACE, colorPickersP2.selectedColor, gamePiece.SIZELARGE, 405, 200)
+
 
     def checkEvents():
         for event in pygame.event.get():
@@ -125,17 +126,23 @@ def preGameLoop():
                     soundHandler.playSound(None, asset.CLICKSOUND)
                     startScreenLoop()
                     return False
+                if P1Display.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    P1Display.cycleSize()
+                if P2Display.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    P2Display.cycleSize()
                 if hoveringColorsP1:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     color = hoveringColorsP1[0].split("-")[0]
                     if colorPickersP1.selectColor(color):
-                        testP1Display.setTextColor(colorPickersP1.selectedColor) # replace with piece color change
+                        P1Display.setColor(colorPickersP1.selectedColor) # replace with piece color change
                         colorPickersP2.banColor(color)
                 if hoveringColorsP2:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     color = hoveringColorsP2[0].split("-")[0]
                     if colorPickersP2.selectColor(color):
-                        testP2Display.setTextColor(colorPickersP2.selectedColor) # replace with piece color change
+                        P2Display.setColor(colorPickersP2.selectedColor) # replace with piece color change
                         colorPickersP1.banColor(color)
         return True
 

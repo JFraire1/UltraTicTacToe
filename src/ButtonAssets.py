@@ -1,5 +1,6 @@
 from ColorsFontsImages import ColorsFontsImages as asset
 from textFormat import textFormat
+from gamePiece import gamePiece
 from checkBox import checkBox
 from slider import Slider
 
@@ -121,6 +122,11 @@ class ButtonAssets:
         temp = textFormat(self.screen, "Start Game", True, 8, 20, 4, False, asset.black, -1, -1,
                           (asset.joystix, 15), 0, 360, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def gamePiece(self, face, color, size, x, y):
+        temp = gamePiece(self.screen, face, color, size, x, y)
         self.buttonList.append(temp)
         return temp
 
