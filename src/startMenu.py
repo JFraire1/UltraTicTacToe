@@ -108,6 +108,14 @@ def preGameLoop():
     colorPickersP2.banColor(colorPickerP1Red.color)
     P1Display = preGameButtons.gamePiece(gamePiece.XFACE, colorPickersP1.selectedColor, gamePiece.SIZELARGE, 95, 200)
     P2Display = preGameButtons.gamePiece(gamePiece.OFACE, colorPickersP2.selectedColor, gamePiece.SIZELARGE, 405, 200)
+    player1Text = preGameButtons.player1Text()
+    player2Text = preGameButtons.player2Text()
+    xCheckP1 = preGameButtons.XCheckP1()
+    xTextP1 = preGameButtons.XTextP1()
+    xCheckP2 = preGameButtons.XCheckP2()
+    xTextP2 = preGameButtons.XTextP2()
+    xCheckP2.check(False)
+    selectScreenText = preGameButtons.selectScreenText()
 
 
     def checkEvents():
@@ -126,24 +134,50 @@ def preGameLoop():
                     soundHandler.playSound(None, asset.CLICKSOUND)
                     startScreenLoop()
                     return False
+                if xCheckP1.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    xCheckP1.check(not xCheckP1.checked)
+                    xCheckP2.check(not xCheckP2.checked)
+                    if xCheckP1.checked:
+                        P1Display.setFace(gamePiece.XFACE)
+                        P2Display.setFace(gamePiece.OFACE)
+                    else:
+                        P2Display.setFace(gamePiece.XFACE)
+                        P1Display.setFace(gamePiece.OFACE)
+                    return True
+                if xCheckP2.toString() in hoveringButtons:
+                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    xCheckP2.check(not xCheckP2.checked)
+                    xCheckP1.check(not xCheckP1.checked)
+                    if xCheckP2.checked:
+                        P2Display.setFace(gamePiece.XFACE)
+                        P1Display.setFace(gamePiece.OFACE)
+                    else:
+                        P1Display.setFace(gamePiece.XFACE)
+                        P2Display.setFace(gamePiece.OFACE)
+                    return True
                 if P1Display.toString() in hoveringButtons:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     P1Display.cycleSize()
+                    return True
                 if P2Display.toString() in hoveringButtons:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     P2Display.cycleSize()
+                    return True
                 if hoveringColorsP1:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     color = hoveringColorsP1[0].split("-")[0]
                     if colorPickersP1.selectColor(color):
                         P1Display.setColor(colorPickersP1.selectedColor) # replace with piece color change
                         colorPickersP2.banColor(color)
+                    return True
                 if hoveringColorsP2:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
                     color = hoveringColorsP2[0].split("-")[0]
                     if colorPickersP2.selectColor(color):
                         P2Display.setColor(colorPickersP2.selectedColor) # replace with piece color change
                         colorPickersP1.banColor(color)
+                    return True
         return True
 
     while True:

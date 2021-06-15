@@ -65,6 +65,8 @@ class gamePiece:
 
     def setFace(self, face):
         self.face = face
+        self.text = self._setText()
+        self.textPos = self._setTextPos()
 
     def show(self):
         pygame.draw.circle(self.screen, self.color, self.pos, self.size)

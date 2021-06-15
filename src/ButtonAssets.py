@@ -130,6 +130,55 @@ class ButtonAssets:
         self.buttonList.append(temp)
         return temp
 
+    def player1Text(self):
+        temp = textFormat(self.screen, "Player 1:", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 23), 15, 125, asset.neonPink, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def player2Text(self):
+        temp = textFormat(self.screen, "Player 2:", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 23), 325, 125, asset.neonPink, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def XCheckP1(self):
+        temp = checkBox(self.screen, True, "X", True, -1, -1, 4, False, asset.white, 15,
+                        15, (asset.joystix, 35), 125, 240, asset.white, asset.neonPink,
+                        -20, 3, -1, -1)
+        self.buttonList.append(temp)
+        return temp
+
+    def XCheckP2(self):
+        temp = checkBox(self.screen, True, "X", True, -1, -1, 4, False, asset.white, 15,
+                        15, (asset.joystix, 35), 435, 240, asset.white, asset.neonPink,
+                        -20, 3, -1, -1)
+        self.buttonList.append(temp)
+        return temp
+
+    def XTextP1(self):
+        temp = textFormat(self.screen, "First:", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 18), 35, 251, asset.neonPink, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def XTextP2(self):
+        temp = textFormat(self.screen, "First:", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 18), 345, 251, asset.neonPink, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def selectScreenText(self):
+        temp = textFormat(self.screen, "Choose Color", False, 0, 0, 0, True, asset.black,
+                          -1, -1, (asset.joystix, 30), 0, 75, asset.darkPurple, (100, 100, 100),
+                          50, 0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
     def alignmentCheck(self):
         temp = textFormat(self.screen, "", True, -1, -1, 0,
                           False, asset.neonPink, 5, 400, (asset.joystix, 35), 0, 200,

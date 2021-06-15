@@ -4,7 +4,6 @@
     <list default="true" id="4fcea17d-ffdf-4c69-95fc-e086ff81fccf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ButtonAssets.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ButtonAssets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ColorsFontsImages.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ColorsFontsImages.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamePiece.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamePiece.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/startMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/startMenu.py" afterDir="false" />
     </list>
@@ -196,6 +195,7 @@
       <workItem from="1623566661670" duration="127000" />
       <workItem from="1623695404502" duration="4346000" />
       <workItem from="1623711817602" duration="19335000" />
+      <workItem from="1623735291246" duration="3717000" />
     </task>
     <servers />
   </component>
@@ -228,7 +228,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UltraTicTacToe$textFormat.coverage" NAME="textFormat Coverage Results" MODIFIED="1623298238534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/UltraTicTacToe$startMenu__1_.coverage" NAME="startMenu (1) Coverage Results" MODIFIED="1623316459097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/UltraTicTacToe$startMenu.coverage" NAME="startMenu Coverage Results" MODIFIED="1623734968682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/UltraTicTacToe$startMenu.coverage" NAME="startMenu Coverage Results" MODIFIED="1623738950389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/UltraTicTacToe$test.coverage" NAME="test Coverage Results" MODIFIED="1623111084274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/UltraTicTacToe$textFormat__1_.coverage" NAME="textFormat (1) Coverage Results" MODIFIED="1623316614852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
