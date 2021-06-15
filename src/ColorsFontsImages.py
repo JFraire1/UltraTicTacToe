@@ -27,7 +27,7 @@ class ColorsFontsImages:
     GAMEOVERSOUND = 2
     GLITCHSOUND = 3
 
-    slotMachineSelectedP1 = r'images\SlotP1Selected.jpg'
+    slotMachineSelectedP1 = r'images\slotAnimation\SlotP1Selected.jpg'
     slotMachineImage1 = r'images\slotAnimation\SlotP1MovingOut1.jpg'
     slotMachineImage2 = r'images\slotAnimation\SlotP1MovingOut2.jpg'
     slotMachineImage3 = r'images\slotAnimation\SlotP1MovingOut3.jpg'
