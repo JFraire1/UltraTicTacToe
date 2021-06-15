@@ -106,17 +106,15 @@ def preGameLoop():
     colorPickersP1.banColor(colorPickerP2Blue.color)
     colorPickersP1.selectColor(colorPickerP1Red.color)
     colorPickersP2.banColor(colorPickerP1Red.color)
-    P1Display = preGameButtons.gamePiece(gamePiece.XFACE, colorPickersP1.selectedColor, gamePiece.SIZELARGE, 95, 200)
-    P2Display = preGameButtons.gamePiece(gamePiece.OFACE, colorPickersP2.selectedColor, gamePiece.SIZELARGE, 405, 200)
+    P1Display = preGameButtons.gamePiece(gamePiece.XFACE, colorPickersP1.selectedColor, gamePiece.SIZELARGE, 95, 220)
+    P2Display = preGameButtons.gamePiece(gamePiece.OFACE, colorPickersP2.selectedColor, gamePiece.SIZELARGE, 405, 220)
     player1Text = preGameButtons.player1Text()
     player2Text = preGameButtons.player2Text()
     xCheckP1 = preGameButtons.XCheckP1()
-    xTextP1 = preGameButtons.XTextP1()
     xCheckP2 = preGameButtons.XCheckP2()
-    xTextP2 = preGameButtons.XTextP2()
     xCheckP2.check(False)
     selectScreenText = preGameButtons.selectScreenText()
-
+    slot = preGameButtons.turnSlot()
 
     def checkEvents():
         for event in pygame.event.get():
