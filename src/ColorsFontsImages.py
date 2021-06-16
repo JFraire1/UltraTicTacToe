@@ -21,32 +21,34 @@ class ColorsFontsImages:
     sound2 = r'sound\click2.wav'
     sound3 = r'sound\gameOver.wav'
     sound4 = r'sound\glitch.wav'
-    soundList = (sound1, sound2, sound3, sound4)
+    sound5 = r'sound\slotWheel.wav'
+    sound6 = r'sound\clickSpin.wav'
+    soundList = (sound1, sound2, sound3, sound4, sound5, sound6)
     CLICKSOUND = 0
     CLICK2SOUND = 1
     GAMEOVERSOUND = 2
     GLITCHSOUND = 3
+    SLOTWHEELSOUND = 4
+    SPINCLICK = 5
 
-    slotMachineSelectedP1 = r'images\slotAnimation\SlotP1Selected.jpg'
-    slotMachineImage1 = r'images\slotAnimation\SlotP1MovingOut1.jpg'
-    slotMachineImage2 = r'images\slotAnimation\SlotP1MovingOut2.jpg'
-    slotMachineImage3 = r'images\slotAnimation\SlotP1MovingOut3.jpg'
-    slotMachineImage4 = r'images\slotAnimation\SlotP1MovingOut4.jpg'
-    slotMachineImage5 = r'images\slotAnimation\SlotP1MovingOut5.jpg'
-    slotMachineImage6 = r'images\slotAnimation\SlotP2MovingIn1.jpg'
-    slotMachineSelectedP2 = r'images\slotAnimation\SlotP2Selected.jpg'
-    slotMachineImage8 = r'images\slotAnimation\SlotP2MovingOut1.jpg'
-    slotMachineImage9 = r'images\slotAnimation\SlotP2MovingOut2.jpg'
-    slotMachineImageA = r'images\slotAnimation\SlotP2MovingOut3.jpg'
-    slotMachineImageB = r'images\slotAnimation\SlotP2MovingOut4.jpg'
-    slotMachineImageC = r'images\slotAnimation\SlotP2MovingOut5.jpg'
-    slotMachineImageD = r'images\slotAnimation\SlotP1MovingIn1.jpg'
-    slotMachineImageE = r'images\slotAnimation\SlotP1MovingIn2.jpg'
-    slotMachineImageF = r'images\slotAnimation\SlotP1MovingIn3.jpg'
+    slotMachineSelectedP1 = r'images\slotAnimation\frame 1-01.jpg'
+    slotMachineImage1 = r'images\slotAnimation\frame 2-01.jpg'
+    slotMachineImage2 = r'images\slotAnimation\frame 3-01.jpg'
+    slotMachineImage3 = r'images\slotAnimation\frame 4-01.jpg'
+    slotMachineImage4 = r'images\slotAnimation\frame 5-01.jpg'
+    slotMachineImage5 = r'images\slotAnimation\frame 6-01.jpg'
+    slotMachineImage6 = r'images\slotAnimation\frame 7-01.jpg'
+    slotMachineSelectedP2 = r'images\slotAnimation\frame 8-01.jpg'
+    slotMachineImage8 = r'images\slotAnimation\frame 9-01.jpg'
+    slotMachineImage9 = r'images\slotAnimation\frame 10-01.jpg'
+    slotMachineImageA = r'images\slotAnimation\frame 11-01.jpg'
+    slotMachineImageB = r'images\slotAnimation\frame 12-01.jpg'
+    slotMachineImageC = r'images\slotAnimation\frame 13-01.jpg'
+    slotMachineImageD = r'images\slotAnimation\frame 14-01.jpg'
 
     slotAnimationList = (slotMachineSelectedP1, slotMachineImage1, slotMachineImage2,
                          slotMachineImage3, slotMachineImage4, slotMachineImage5,
                          slotMachineImage6, slotMachineSelectedP2, slotMachineImage8,
                          slotMachineImageA, slotMachineImageB, slotMachineImageC,
-                         slotMachineImageD, slotMachineImageE, slotMachineImageF)
+                         slotMachineImageD)
 

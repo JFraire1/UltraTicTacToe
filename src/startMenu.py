@@ -18,6 +18,13 @@ pygame.init()
 screenSize = (500, 475)
 screen = pygame.display.set_mode(screenSize, pygame.NOFRAME)
 mainBackground = pygame.image.load(asset.mainBackground)
+fpsFont = pygame.font.Font(asset.joystix, 20)
+
+def fps():
+    fpsNum = clock.get_fps()
+    fpsNum = str(round(fpsNum, 2))
+    fps = fpsFont.render(fpsNum, True, asset.neonPink)
+    screen.blit(fps, (0,0))
 
 def setVol(vol):
     soundHandler.setVolume(None, vol)
@@ -81,6 +88,7 @@ def startScreenLoop():
         elif flashTimer > 450:
             flashTimer = 0
 
+        fps()
         checkButtons(startScreenButtons, hoveringButtons)
 
         flashTimer += 1
@@ -141,7 +149,7 @@ def preGameLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if startGameButton.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    soundHandler.playSound(None, asset.GAMEOVERSOUND)
                     gameLoop()
                     return False
                 if backButton.toString() in hoveringButtons:
@@ -179,7 +187,10 @@ def preGameLoop():
                     P2Display.cycleSize()
                     return True
                 if spinButton.toString() in hoveringButtons:
-                    slot.spin()
+                    if not slot.isSpinning:
+                        soundHandler.playSound(None, asset.SLOTWHEELSOUND)
+                        soundHandler.playSound(None, asset.SPINCLICK)
+                        slot.spin()
                     return True
                 if hoveringColorsP1:
                     soundHandler.playSound(None, asset.GLITCHSOUND)
@@ -213,6 +224,7 @@ def preGameLoop():
         checkButtons(colorPickersP1, hoveringColorsP1)
         checkButtons(colorPickersP2, hoveringColorsP2)
         checkButtons(preGameButtons, hoveringButtons)
+        fps()
 
         pygame.display.flip()
         clock.tick(120)
@@ -250,6 +262,7 @@ def gameLoop():
         pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
 
         checkButtons(gameButtons, hoveringButtons)
+        fps()
 
         pygame.display.flip()
         clock.tick(120)
@@ -298,6 +311,7 @@ def pauseLoop(gameButtons):
         s.fill((asset.darkPurple[0], asset.darkPurple[1], asset.darkPurple[2], 190))
         screen.blit(s, (0, 25))
         checkButtons(pauseButtons, hoveringButtons)
+        fps()
         pygame.display.flip()
         clock.tick(120)
     return out
@@ -373,6 +387,7 @@ def optionLoop():
         pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
 
         checkButtons(optionButtons, hoveringButtons)
+        fps()
 
         pygame.display.flip()
         clock.tick(120)

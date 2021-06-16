@@ -18,6 +18,7 @@ class soundHandler:
         if 0 <= index < len(soundHandler.soundList) and len(soundHandler.soundList) != 0:
             soundHandler.soundList[index].play()
 
+
     def setVolume(self, vol):
         soundHandler.volume = vol
         if soundHandler.soundOn:
