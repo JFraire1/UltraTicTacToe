@@ -12,6 +12,7 @@ from pygame.locals import (
     KEYDOWN,
     QUIT,
 )
+
 musicHandler.musicLoop()
 clock = pygame.time.Clock()
 pygame.init()

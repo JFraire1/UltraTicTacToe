@@ -1,24 +1,61 @@
 from itertools import islice
-
+import pygame
+from ColorsFontsImages import ColorsFontsImages as asset
+from gamePiece import gamePiece
 
 class GameBoard:
-    def __init__(self, screen):
+    HORIZONTALLINE1 = (asset.white, [37.5, 100, 400, 20], 0, 10)
+    HORIZONTALLINE2 = (asset.white, [37.5, 400, 400, 20], 0, 10)
+    VERTICALLINE1 = (asset.white, [50, 100, 20, 400], 0, 10)
+    VERTICALLINE2 = (asset.white, [50, 375, 20, 400], 0, 10)
+    # todo update with actual positions and sizes
+
+    LINELIST = (HORIZONTALLINE1, HORIZONTALLINE2, VERTICALLINE1, VERTICALLINE2)
+
+    GAMEPIECEPOS = ((20, 50, 70), (90, 120, 150)) # todo update with actual positions
+
+    def __init__(self, screen, colorX, colorO):
         self.screen = screen
+        self.colorX = colorX
+        self.colorO = colorO
+        self.gridDisplay = []
+        for i in LINELIST:
+            self.gridDisplay.append((self.screen, i[0], i[1], i[2], i[3]))
         self.gridValues = {}
+        self.gamePieces = {}
         for i in range(3):
+            gPosX = GameBoard.GAMEPIECEPOS[0][i]
             for j in range(3):
-                self.gridValues[(i, j)] = 0
-        self.playGrid = [["", "", ""], ["", "", ""], ["", "", ""]]
+                gPosY = GameBoard.GAMEPIECEPOS[1][j]
+                self.gridValues[(i, j)] = ("", 0)
+                self.gamePieces[(i, j)] = gamePiece(gamePiece.XFACE, colorX, gamePiece.SIZELARGE, gPosX, gPosY)
         self.turnCount = 0
 
     def iterateTurn(self):
         self.turnCount += 1
-        #todo
-
+        # todo actually do something here? might not be needed
 
     def drawBoard(self):
-        pass
-        #todo
+        for i in self.gridDisplay:
+            pygame.draw.rect(i[0], i[1], i[2], i[3], i[4])
+        for gridPos in self.gridValues:
+            if self.gridValues[gridPos] != ("", 0):
+                self.gamePieces[gridPos].show()
+
+    def updateBoard(self, pos, face, size):
+        # todo this is looking kinda promising, actually
+        # just make the board, see the position, (0,0) of the inserted piece,
+        # its face, and double check to make sure the size is greater than the piece already there
+        # find size of existing piece: self.gridValues[pos][1]
+        # replace if need be self.gridValues[pos] = (face, size)
+        # if need be, update size of piece at that position
+        # x = self.gamePieces[pos]
+        # x.setSize(size)
+        # x.setFace(face)
+
+
+
+
 
 def turn(board, num):
     if num % 2 == 1:
