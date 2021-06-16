@@ -16,7 +16,9 @@ class ColorsFontsImages:
     music1 = r'sound\mainBacking.mp3'
     music2 = r'sound\hipHopOne.mp3'
     music3 = r'sound\makeYaThink.mp3'
-    musicList = (music1,)
+    music4 = r'sound\goodSongForNoReason.mp3'
+    musicList = music1,
+    gameMusicList = music4, music2
     sound1 = r'sound\click.wav'
     sound2 = r'sound\click2.wav'
     sound3 = r'sound\gameOver.wav'

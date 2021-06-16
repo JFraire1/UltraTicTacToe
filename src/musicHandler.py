@@ -4,8 +4,11 @@ from pygame import mixer
 
 class musicHandler():
     mixer.init()
-    trackNum = 0
-    trackList = asset.musicList
+    isGaming = False
+    menuTrackNum = 0
+    gameTrackNum = 0
+    gameTrackList = asset.gameMusicList
+    menuTrackList = asset.musicList
     # todo get gameplay music name from asset
     musicOn = True
     volume = 1.0
@@ -15,16 +18,15 @@ class musicHandler():
         if musicHandler.musicOn:
             mixer.music.set_volume(vol)
 
-    def setGameMusic(self):
-        musicHandler.stop()
-        # todo switch music load to gamePlay Music
-        mixer.music.load(musicHandler.trackList[musicHandler.trackNum])
-        mixer.music.play(0, 0, 10)
+    def setGameMusic(self=None):
+        musicHandler.isGaming = True
 
-
-    def setMenuMusic(self):
+    def changeSong(self=None):
         musicHandler.stop()
         musicHandler.musicLoop()
+
+    def setMenuMusic(self=None):
+        musicHandler.isGaming = False
 
     def off(self=None):
         mixer.music.set_volume(0.0)
@@ -40,10 +42,16 @@ class musicHandler():
         if mixer.music.get_busy():
             return
         else:
-            musicHandler.trackNum %= len(musicHandler.trackList)
-            mixer.music.load(musicHandler.trackList[musicHandler.trackNum])
-            mixer.music.play(0, 0, 10)
-            musicHandler.trackNum += 1
+            if musicHandler.isGaming:
+                musicHandler.gameTrackNum %= len(musicHandler.gameTrackList)
+                mixer.music.load(musicHandler.gameTrackList[musicHandler.gameTrackNum])
+                mixer.music.play(0, 0, 10)
+                musicHandler.gameTrackNum += 1
+            else:
+                musicHandler.menuTrackNum %= len(musicHandler.menuTrackList)
+                mixer.music.load(musicHandler.menuTrackList[musicHandler.menuTrackNum])
+                mixer.music.play(0, 0, 10)
+                musicHandler.menuTrackNum += 1
 
     def stop(self=None):
         if mixer.music.get_busy():

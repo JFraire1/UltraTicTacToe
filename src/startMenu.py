@@ -149,6 +149,8 @@ def preGameLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if startGameButton.toString() in hoveringButtons:
+                    musicHandler.setGameMusic()
+                    musicHandler.changeSong()
                     soundHandler.playSound(None, asset.GAMEOVERSOUND)
                     gameLoop()
                     return False
@@ -247,6 +249,7 @@ def gameLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if pauseButton.toString() in hoveringButtons:
+                    musicHandler.setVolume(None, musicHandler.volume / 4)
                     soundHandler.playSound(None, asset.CLICKSOUND)
                     return pauseLoop(gameButtons)
         return True
@@ -280,19 +283,25 @@ def pauseLoop(gameButtons):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    musicHandler.setVolume(None, 4 * musicHandler.volume)
                     soundHandler.playSound(None, asset.CLICK2SOUND)
                     return True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pauseButton.toString() in hoveringButtons:
+                    musicHandler.setVolume(None, 4 * musicHandler.volume)
                     soundHandler.playSound(None, asset.CLICK2SOUND)
                     return True
                 if continueButton.toString() in hoveringButtons:
+                    musicHandler.setVolume(None, 4 * musicHandler.volume)
                     soundHandler.playSound(None, asset.CLICK2SOUND)
                     return True
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if mainMenuButton.toString() in hoveringButtons:
+                    musicHandler.setVolume(None, 4 * musicHandler.volume)
                     soundHandler.playSound(None, asset.CLICKSOUND)
+                    musicHandler.setMenuMusic()
+                    musicHandler.changeSong()
                     startScreenLoop()
                     return False
 
