@@ -73,6 +73,20 @@ class ButtonAssets:
         self.buttonList.append(temp)
         return temp
 
+    def restartButton(self):
+        temp = textFormat(self.screen, "Restart", True, 8, -1, 4, False, asset.black, -1, 120,
+                          (asset.joystix, 15), 0, 300, asset.white, asset.neonPink, 255, 2,
+                          textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def mainMenuButton2(self):
+        temp = textFormat(self.screen, "Main Menu", True, 8, -1, 4, False, asset.black, -1, 120,
+                          (asset.joystix, 15), 0, 360, asset.white, asset.neonPink, 255, 2,
+                          textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
     def pauseText(self):
         temp = textFormat(self.screen, "Pause", False, 0, 0, 0, True, asset.black, -1, -1,
                           (asset.joystix, 50), 0, 100, asset.neonPink, (100, 100, 100), 50,
