@@ -279,6 +279,9 @@ def gameLoop(colorP1, colorP2, XPlayer, first, winP1=0, winP2=0):
         winDisplay = gameButtons.winDisplay()
         for i in winDisplay:
             i.setText(str(winP1) + "-" + str(winP2))
+        if winDisplay[1].textPos[0] + winDisplay[1].outText.get_width() > screen.get_width():
+            for i in winDisplay:
+                i.setHorizontalAlignment(i.ALIGNMENTRIGHT)
 
     def checkEmpty():
         if gameBoard.turn % 2 == 0:
@@ -555,14 +558,23 @@ def endGameLoop(winner, gameButtons, gameBoard, grabbableGamePieces, colorP1, co
     replayButton = endGameButtons.replayButton()
     mainMenuButton = endGameButtons.mainMenuButton()
     end = endGameButtons.endGameText()
+    endPlayer = endGameButtons.endGameText2()
     if winner == "X":
         soundHandler.playSound(asset.ENDGAMECLICK)
         soundHandler.playSound(asset.GAMEWIN)
         end.setText("X Wins")
+        if XPlayer == 1:
+            endPlayer.setText("Player 1")
+        else:
+            endPlayer.setText("Player 2")
     elif winner == "O":
         soundHandler.playSound(asset.ENDGAMECLICK)
         soundHandler.playSound(asset.GAMEWIN)
         end.setText("O Wins")
+        if XPlayer == 1:
+            endPlayer.setText("Player 2")
+        else:
+            endPlayer.setText("Player 1")
     else:
         soundHandler.playSound(asset.ENDGAMECLICK)
         soundHandler.playSound(asset.GAMETIE)

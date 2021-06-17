@@ -267,7 +267,14 @@ class ButtonAssets:
 
     def endGameText(self):
         temp = textFormat(self.screen, "", False, 0, 0, 0, True, asset.black, -1, -1,
-                          (asset.joystix, 50), 0, 100, asset.neonPink, (100, 100, 100), 50,
+                          (asset.joystix, 50), 0, 120, asset.neonPink, (100, 100, 100), 50,
+                          0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def endGameText2(self):
+        temp = textFormat(self.screen, "", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 50), 0, 70, asset.neonPink, (100, 100, 100), 50,
                           0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp)
         return temp
