@@ -30,9 +30,9 @@
 
 <h2>Want to Keep Going? Press Replay and Keep a Going Score of Wins. Pressing Replay Also Switches Who Goes First!</h2>
 
-<img src= https://github.com/JFraire1/UltraTicTacToe/blob/main/githubImages/endScreen.png>
+<img src= https://github.com/JFraire1/UltraTicTacToe/blob/main/githubImages/endScreen1.png>
 
-<img src= https://github.com/JFraire1/UltraTicTacToe/blob/main/githubImages/gameScreen2.png>
+<img src= https://github.com/JFraire1/UltraTicTacToe/blob/main/githubImages/winTracker.png>
 
 
 
@@ -65,7 +65,7 @@
 
 
 
-<a href = https://youtu.be/6Z0q6zOtsIk>Back to Top</a>
+<a href = https://github.com/JFraire1/UltraTicTacToe/blob/main/README.md#ultratictactoe>Back to Top</a>
 
 
 
