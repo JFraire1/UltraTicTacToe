@@ -13,7 +13,7 @@ from pygame.locals import (
     KEYDOWN,
     QUIT,
 )
-musicHandler.musicSwitch()
+
 musicHandler.musicLoop()
 clock = pygame.time.Clock()
 pygame.init()
@@ -31,8 +31,8 @@ def fps():
 
 
 def setVol(vol):
-    soundHandler.setVolume(None, vol)
-    musicHandler.setVolume(None, vol)
+    soundHandler.setVolume(vol)
+    musicHandler.setVolume(vol)
 
 
 def close():
@@ -71,11 +71,11 @@ def startScreenLoop():
                 if exitButton.toString() in hoveringButtons:
                     return False
                 elif startButton.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    soundHandler.playSound(asset.CLICK2SOUND)
                     preGameLoop()
                     return False
                 elif optionButton.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    soundHandler.playSound(asset.CLICK2SOUND)
                     optionLoop()
                     return False
         return True
@@ -138,9 +138,9 @@ def preGameLoop():
     def checkEvents():
         if slot.doneSpinning:
             if slot.result == turnSlot.P1SELECT:
-                soundHandler.playSound(None, asset.GLITCHSOUND)
+                soundHandler.playSound(asset.GLITCHSOUND)
             else:
-                soundHandler.playSound(None, asset.GLITCHSOUND)
+                soundHandler.playSound(asset.GLITCHSOUND)
             slot.valueUpdated()
             return True
         for event in pygame.event.get():
@@ -153,7 +153,7 @@ def preGameLoop():
                 if startGameButton.toString() in hoveringButtons:
                     musicHandler.setGameMusic()
                     musicHandler.changeSong()
-                    soundHandler.playSound(None, asset.GAMEOVERSOUND)
+                    soundHandler.playSound(asset.GAMEOVERSOUND)
                     if xCheckP1.checked:
                         XPlayer = 1
                     else:
@@ -165,11 +165,11 @@ def preGameLoop():
                     gameLoop(colorPickersP1.selectedColor, colorPickersP2.selectedColor, XPlayer, first)
                     return False
                 if backButton.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    soundHandler.playSound(asset.CLICKSOUND)
                     startScreenLoop()
                     return False
                 if xCheckP1.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    soundHandler.playSound(asset.GLITCHSOUND)
                     xCheckP1.check(not xCheckP1.checked)
                     xCheckP2.check(not xCheckP2.checked)
                     if xCheckP1.checked:
@@ -180,7 +180,7 @@ def preGameLoop():
                         P1Display.setFace(gamePiece.OFACE)
                     return True
                 if xCheckP2.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    soundHandler.playSound(asset.GLITCHSOUND)
                     xCheckP2.check(not xCheckP2.checked)
                     xCheckP1.check(not xCheckP1.checked)
                     if xCheckP2.checked:
@@ -191,28 +191,28 @@ def preGameLoop():
                         P2Display.setFace(gamePiece.OFACE)
                     return True
                 if P1Display.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    soundHandler.playSound(asset.GLITCHSOUND)
                     P1Display.cycleSize()
                     return True
                 if P2Display.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    soundHandler.playSound(asset.GLITCHSOUND)
                     P2Display.cycleSize()
                     return True
                 if spinButton.toString() in hoveringButtons:
                     if not slot.isSpinning:
-                        soundHandler.playSound(None, asset.SLOTWHEELSOUND)
-                        soundHandler.playSound(None, asset.SPINCLICK)
+                        soundHandler.playSound(asset.SLOTWHEELSOUND)
+                        soundHandler.playSound(asset.SPINCLICK)
                         slot.spin()
                     return True
                 if hoveringColorsP1:
-                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    soundHandler.playSound(asset.GLITCHSOUND)
                     color = hoveringColorsP1[0].split("-")[0]
                     if colorPickersP1.selectColor(color):
                         P1Display.setColor(colorPickersP1.selectedColor)
                         colorPickersP2.banColor(color)
                     return True
                 if hoveringColorsP2:
-                    soundHandler.playSound(None, asset.GLITCHSOUND)
+                    soundHandler.playSound(asset.GLITCHSOUND)
                     color = hoveringColorsP2[0].split("-")[0]
                     if colorPickersP2.selectColor(color):
                         P2Display.setColor(colorPickersP2.selectedColor)
@@ -242,7 +242,7 @@ def preGameLoop():
         clock.tick(120)
 
 
-def gameLoop(colorP1, colorP2, XPlayer, first):
+def gameLoop(colorP1, colorP2, XPlayer, first, winP1=0, winP2=0):
     s = pygame.Surface((420, 100), pygame.SRCALPHA)
     s.fill((asset.neonPink[0], asset.neonPink[1], asset.neonPink[2], 70))
     gameButtons = Buttons(screen)
@@ -264,9 +264,31 @@ def gameLoop(colorP1, colorP2, XPlayer, first):
     numTexts = {gamePiece.SIZELARGE: gameButtons.num1Text(),
                 gamePiece.SIZEMEDIUM: gameButtons.num2Text(),
                 gamePiece.SIZESMALL: gameButtons.num3Text()}
-    piecesAmountX = {gamePiece.SIZELARGE: 2, gamePiece.SIZEMEDIUM: 4, gamePiece.SIZESMALL: 8}
-    piecesAmountO = {gamePiece.SIZELARGE: 2, gamePiece.SIZEMEDIUM: 4, gamePiece.SIZESMALL: 8}
+    piecesAmountX = {gamePiece.SIZELARGE: 1, gamePiece.SIZEMEDIUM: 2, gamePiece.SIZESMALL: 4}
+    piecesAmountO = {gamePiece.SIZELARGE: 1, gamePiece.SIZEMEDIUM: 2, gamePiece.SIZESMALL: 4}
     draggedPiece = gamePiece(screen, 0, gameBoard.colorX, gamePiece.SIZESMALL, 0, 0)
+    hitBoxes = Buttons(screen)
+    hitBoxRealPositions = ((130, 245, 360),(165, 275, 385))
+    hitBoxGridPositions = {}
+    for i in range(3):
+        x = hitBoxRealPositions[0][i]
+        for j in range(3):
+            y = hitBoxRealPositions[1][j]
+            hitBoxGridPositions[hitBoxes.hitBox(x, y).toString()] = (i, j)
+    if winP1 != 0 or winP2 != 0:
+        winDisplay = gameButtons.winDisplay()
+        for i in winDisplay:
+            i.setText(str(winP1) + "-" + str(winP2))
+
+    def checkPlayable():
+        if gameBoard.turn % 2 == 0:
+            if piecesAmountX[gamePiece.SIZELARGE] == 0 and piecesAmountX[gamePiece.SIZEMEDIUM] == 0:
+                    return False
+            return True
+        else:
+            if piecesAmountO[gamePiece.SIZELARGE] == 0 and piecesAmountO[gamePiece.SIZEMEDIUM] == 0:
+                    return False
+            return True
 
     def updateTurnDisplay(turn):
         if turn == 0:
@@ -331,6 +353,7 @@ def gameLoop(colorP1, colorP2, XPlayer, first):
                     j.setText("x" + str(piecesAmountO[piece.size]))
             piece.setBeingDragged(False)
             draggedPiece.setBeingDragged(False)
+            soundHandler.playSound(asset.PUTDOWNSOUND)
         else:
             if XTurn:
                 if piecesAmountX[piece.size] == 0:
@@ -345,6 +368,7 @@ def gameLoop(colorP1, colorP2, XPlayer, first):
                 for j in numTexts[piece.size]:
                     j.setText("x" + str(piecesAmountO[piece.size]))
             draggedPiece.setBeingDragged(True)
+            soundHandler.playSound(asset.PICKUPSOUND)
             draggedPiece.setColor(piece.color)
             draggedPiece.setFace(piece.face)
             draggedPiece.setSize(piece.size)
@@ -360,33 +384,69 @@ def gameLoop(colorP1, colorP2, XPlayer, first):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    soundHandler.playSound(asset.CLICKSOUND)
                     return pauseLoop(gameButtons, gameBoard, grabbableGamePieces)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if pauseButton.toString() in hoveringButtons:
-                    musicHandler.setVolume(None, musicHandler.volume / 4)
-                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    musicHandler.setVolume(musicHandler.volume / 4)
+                    soundHandler.playSound(asset.CLICKSOUND)
                     return pauseLoop(gameButtons, gameBoard, grabbableGamePieces)
                 if hoveringPieces:
                     handleGamePieceAmounts(gameBoard.turn)
                     return True
+                if hoveringHitBoxes:
+                    if draggedPiece.isBeingDragged:
+                        if gameBoard.updateBoard(hitBoxGridPositions[hoveringHitBoxes[0]], draggedPiece.face, draggedPiece.size):
+                            gameBoard.turn = iterateTurn(gameBoard.turn)
+                            soundHandler.playSound(asset.PIECEADDED)
+                            draggedPiece.setBeingDragged(False)
+                            result = gameBoard.checkWinner()
+                            if result == "full":
+                                if not checkPlayable():
+                                    endGameLoop("Tie", gameButtons, gameBoard, grabbableGamePieces,
+                                                colorP1, colorP2, XPlayer, first, winP1, winP2)
+                                    return False
+                                return True
+                            if result == "o_win":
+                                if XPlayer == 1:
+                                    winP1Pass = winP1
+                                    winP2Pass = winP2 + 1
+                                else:
+                                    winP1Pass = winP1 + 1
+                                    winP2Pass = winP2
+                                endGameLoop("O", gameButtons, gameBoard, grabbableGamePieces,
+                                            colorP1, colorP2, XPlayer, first, winP1Pass, winP2Pass)
+                                return False
+                            if result == "x_win":
+                                if XPlayer == 1:
+                                    winP1Pass = winP1 + 1
+                                    winP2Pass = winP2
+                                else:
+                                    winP1Pass = winP1
+                                    winP2Pass = winP2 + 1
+                                endGameLoop("X", gameButtons, gameBoard, grabbableGamePieces,
+                                            colorP1, colorP2, XPlayer, first, winP1Pass, winP2Pass)
+                                return False
+                        else:
+                            soundHandler.playSound(asset.REJECTSOUND)
         return True
 
     gameBoard.turn = iterateTurn(gameBoard.turn)
     while True:
         checkMusic()
+        hoveringHitBoxes = hitBoxes.buttonsHovering()
         hoveringPieces = grabbableGamePieces.buttonsHovering()
         hoveringButtons = gameButtons.buttonsHovering()
         running = checkEvents()
         if not running:
             close()
             break
+
         screen.fill(asset.darkPurple)
         screen.blit(s, (80, 0))
         pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
-
         checkButtons(grabbableGamePieces, hoveringPieces)
         checkButtons(gameButtons, hoveringButtons)
         gameBoard.show()
@@ -404,58 +464,127 @@ def pauseLoop(gameButtons, gameBoard, grabbableGamePieces):
     exitButton = pauseButtons.exitButton()
     continueButton = pauseButtons.continueButton()
     mainMenuButton = pauseButtons.mainMenuButton()
-    pauseText = pauseButtons.pauseText()
+    pauseButtons.pauseText()
 
     def checkEvents():
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    musicHandler.setVolume(None, 4 * musicHandler.volume)
-                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    musicHandler.setVolume(4 * musicHandler.volume)
+                    soundHandler.playSound(asset.CLICK2SOUND)
                     return True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pauseButton.toString() in hoveringButtons:
-                    musicHandler.setVolume(None, 4 * musicHandler.volume)
-                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    musicHandler.setVolume(4 * musicHandler.volume)
+                    soundHandler.playSound(asset.CLICK2SOUND)
                     return True
                 if continueButton.toString() in hoveringButtons:
-                    musicHandler.setVolume(None, 4 * musicHandler.volume)
-                    soundHandler.playSound(None, asset.CLICK2SOUND)
+                    musicHandler.setVolume(4 * musicHandler.volume)
+                    soundHandler.playSound(asset.CLICK2SOUND)
                     return True
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if mainMenuButton.toString() in hoveringButtons:
-                    musicHandler.setVolume(None, 4 * musicHandler.volume)
-                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    musicHandler.setVolume(4 * musicHandler.volume)
+                    soundHandler.playSound(asset.CLICKSOUND)
                     musicHandler.setMenuMusic()
-                    musicHandler.changeSong()
                     startScreenLoop()
                     return False
 
     while True:
-        hoveringButtons = pauseButtons.buttonsHovering()
         checkMusic()
+        hoveringButtons = pauseButtons.buttonsHovering()
         out = checkEvents()
-        if out != None:
+        if out is not None:
             break
+
         s.fill(asset.darkPurple)
         screen.blit(s, (0, 25))
         pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
+        gameBoard.show()
         for button in gameButtons.buttonList:
             if button.toString() != pauseButton.toString():
                 button.show()
         for button in grabbableGamePieces.buttonList:
             if button.toString() != pauseButton.toString():
                 button.show()
-        gameBoard.show()
+
         s.fill((asset.darkPurple[0], asset.darkPurple[1], asset.darkPurple[2], 190))
         screen.blit(s, (0, 25))
         checkButtons(pauseButtons, hoveringButtons)
         fps()
+
         pygame.display.flip()
         clock.tick(120)
+
     return out
 
+
+def endGameLoop(winner, gameButtons, gameBoard, grabbableGamePieces, colorP1, colorP2, XPlayer, first, winP1, winP2):
+    s = pygame.Surface((500, 475), pygame.SRCALPHA)
+    endGameButtons = Buttons(screen)
+    exitButton = endGameButtons.exitButton()
+    replayButton = endGameButtons.replayButton()
+    mainMenuButton = endGameButtons.mainMenuButton()
+    end = endGameButtons.endGameText()
+    if winner == "X":
+        soundHandler.playSound(asset.ENDGAMECLICK)
+        soundHandler.playSound(asset.GAMEWIN)
+        end.setText("X Wins")
+    elif winner == "O":
+        soundHandler.playSound(asset.ENDGAMECLICK)
+        soundHandler.playSound(asset.GAMEWIN)
+        end.setText("O Wins")
+    else:
+        soundHandler.playSound(asset.ENDGAMECLICK)
+        soundHandler.playSound(asset.GAMETIE)
+        end.setText("It's a Tie")
+
+
+    def checkEvents():
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    return False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if exitButton.toString() in hoveringButtons:
+                    return False
+                if replayButton.toString() in hoveringButtons:
+                    soundHandler.playSound(asset.GAMEOVERSOUND)
+                    gameLoop(colorP1, colorP2, XPlayer, first + 1, winP1, winP2)
+                    return False
+                if mainMenuButton.toString() in hoveringButtons:
+                    soundHandler.playSound(asset.CLICKSOUND)
+                    musicHandler.setMenuMusic()
+                    startScreenLoop()
+                    return False
+        return True
+
+    while True:
+        checkMusic()
+        hoveringButtons = endGameButtons.buttonsHovering()
+        running = checkEvents()
+        if not running:
+            close()
+            break
+
+        s.fill(asset.darkPurple)
+        screen.blit(s, (0, 25))
+        pygame.draw.rect(screen, asset.black, [0, 0, 500, 25])
+
+        gameBoard.show()
+        for button in gameButtons.buttonList:
+            button.show()
+        for button in grabbableGamePieces.buttonList:
+            button.show()
+
+        s.fill((asset.darkPurple[0], asset.darkPurple[1], asset.darkPurple[2], 190))
+        screen.blit(s, (0, 25))
+        checkButtons(endGameButtons, hoveringButtons)
+        fps()
+
+        pygame.display.flip()
+        clock.tick(120)
 
 def optionLoop():
     optionButtons = Buttons(screen)
@@ -479,38 +608,38 @@ def optionLoop():
                 if soundSlider.toString() in hoveringButtons:
                     soundSlider.setDragged(True)
                     soundSlider.setValue()
-                    soundHandler.setVolume(None, soundSlider.value)
-                    musicHandler.setVolume(None, soundSlider.value)
+                    soundHandler.setVolume(soundSlider.value)
+                    musicHandler.setVolume(soundSlider.value)
                 if exitButton.toString() in hoveringButtons:
                     return False
                 if backButton.toString() in hoveringButtons:
-                    soundHandler.playSound(None, asset.CLICKSOUND)
+                    soundHandler.playSound(asset.CLICKSOUND)
                     startScreenLoop()
                     return False
                 if musicCheckBox.toString() in hoveringButtons or musicText.toString() in hoveringButtons:
                     musicHandler.musicSwitch()
                     if musicHandler.musicOn:
-                        soundHandler.playSound(None, asset.CLICK2SOUND)
+                        soundHandler.playSound(asset.CLICK2SOUND)
                     else:
-                        soundHandler.playSound(None, asset.CLICKSOUND)
+                        soundHandler.playSound(asset.CLICKSOUND)
                     musicCheckBox.check(musicHandler.musicOn)
                     return True
                 if soundCheckBox.toString() in hoveringButtons or soundText.toString() in hoveringButtons:
                     soundHandler.soundSwitch()
                     if soundHandler.soundOn:
                         soundHandler.on()
-                        soundHandler.playSound(None, asset.CLICK2SOUND)
+                        soundHandler.playSound(asset.CLICK2SOUND)
                     else:
                         soundHandler.off()
-                        soundHandler.playSound(None, asset.CLICKSOUND)
+                        soundHandler.playSound(asset.CLICKSOUND)
                     soundCheckBox.check(soundHandler.soundOn)
                     return True
             if event.type == pygame.MOUSEMOTION:
                 if soundSlider.beingDragged:
                     soundSlider.setDragged(True)
                     soundSlider.setValue()
-                    soundHandler.setVolume(None, soundSlider.value)
-                    musicHandler.setVolume(None, soundSlider.value)
+                    soundHandler.setVolume(soundSlider.value)
+                    musicHandler.setVolume(soundSlider.value)
             if event.type == pygame.MOUSEBUTTONUP:
                 soundSlider.setDragged(False)
         return True

@@ -11,24 +11,28 @@ class soundHandler:
     volume = 1.0
     soundOn = True
 
-    def soundSwitch(self=None):
+    @staticmethod
+    def soundSwitch():
         soundHandler.soundOn = not soundHandler.soundOn
 
-    def playSound(self, index):
+    @staticmethod
+    def playSound(index):
         if 0 <= index < len(soundHandler.soundList) and len(soundHandler.soundList) != 0:
             soundHandler.soundList[index].play()
 
-
-    def setVolume(self, vol):
+    @staticmethod
+    def setVolume(vol):
         soundHandler.volume = vol
         if soundHandler.soundOn:
             for i in soundHandler.soundList:
                 i.set_volume(vol)
 
-    def off(self = None):
+    @staticmethod
+    def off():
         for i in soundHandler.soundList:
             i.set_volume(0.0)
 
-    def on(self = None):
+    @staticmethod
+    def on():
         for i in soundHandler.soundList:
             i.set_volume(soundHandler.volume)

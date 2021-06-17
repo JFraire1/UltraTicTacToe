@@ -201,10 +201,10 @@ class ButtonAssets:
         self.buttonList.append(temp)
 
     def num1Text(self):
-        temp = textFormat(self.screen, "x2", False, 0, 0, 0, True, asset.black, -1, -1,
+        temp = textFormat(self.screen, "x1", False, 0, 0, 0, True, asset.black, -1, -1,
                           (asset.joystix, 20), 255, 50, asset.white, (100, 100, 100), 50,
                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
-        temp2 = textFormat(self.screen, "x2", False, 0, 0, 0, True, asset.black, -1, -1,
+        temp2 = textFormat(self.screen, "x1", False, 0, 0, 0, True, asset.black, -1, -1,
                            (asset.joystix, 20), 258, 53, asset.black, (100, 100, 100), 50,
                            0, -1, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp2)
@@ -212,10 +212,10 @@ class ButtonAssets:
         return temp, temp2
 
     def num2Text(self):
-        temp = textFormat(self.screen, "x4", False, 0, 0, 0, True, asset.black, -1, -1,
+        temp = textFormat(self.screen, "x2", False, 0, 0, 0, True, asset.black, -1, -1,
                           (asset.joystix, 20), 367, 50, asset.white, (100, 100, 100), 50,
                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
-        temp2 = textFormat(self.screen, "x4", False, 0, 0, 0, True, asset.black, -1, -1,
+        temp2 = textFormat(self.screen, "x2", False, 0, 0, 0, True, asset.black, -1, -1,
                            (asset.joystix, 20), 370, 53, asset.black, (100, 100, 100), 50,
                            0, -1, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp2)
@@ -223,10 +223,10 @@ class ButtonAssets:
         return temp, temp2
 
     def num3Text(self):
-        temp = textFormat(self.screen, "x8", False, 0, 0, 0, True, asset.black, -1, -1,
+        temp = textFormat(self.screen, "x4", False, 0, 0, 0, True, asset.black, -1, -1,
                           (asset.joystix, 20), 454, 50, asset.white, (100, 100, 100), 50,
                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
-        temp2 = textFormat(self.screen, "x8", False, 0, 0, 0, True, asset.black, -1, -1,
+        temp2 = textFormat(self.screen, "x4", False, 0, 0, 0, True, asset.black, -1, -1,
                            (asset.joystix, 20), 457, 53, asset.black, (100, 100, 100), 50,
                            0, -1, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp2)
@@ -244,13 +244,37 @@ class ButtonAssets:
         self.buttonList.append(temp)
         return temp, temp2
 
-    def hitBox(self):
-        temp = textFormat(self.screen, "", True, 8, -1, 4, False, asset.black, 120, 120,
+    def hitBox(self, x, y):
+        temp = textFormat(self.screen, "", True, 8, -1, 4, False, asset.black, 90, 90,
+                          (asset.joystix, 15), x, y, asset.white, asset.neonPink, 255, 2,
+                          -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def endGameText(self):
+        temp = textFormat(self.screen, "", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 50), 0, 100, asset.neonPink, (100, 100, 100), 50,
+                          0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def replayButton(self):
+        temp = textFormat(self.screen, "Replay", True, 8, -1, 4, False, asset.black, -1, 120,
                           (asset.joystix, 15), 0, 240, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp)
         return temp
 
+    def winDisplay(self):
+        temp = textFormat(self.screen, "", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 20), 434, 90, asset.white, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 20), 437, 90, asset.black, (100, 100, 100), 50,
+                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+        return temp, temp2
 
     def alignmentCheck(self):
         temp = textFormat(self.screen, "", True, -1, -1, 0,

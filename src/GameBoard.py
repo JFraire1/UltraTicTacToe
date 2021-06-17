@@ -1,7 +1,7 @@
-from itertools import islice
 import pygame
-from ColorsFontsImages import ColorsFontsImages as asset
+from itertools import islice
 from gamePiece import gamePiece
+from ColorsFontsImages import ColorsFontsImages as asset
 
 class GameBoard:
     HORIZONTALLINE1 = (asset.white, [55, 220, 390, 20], 0, 10)
@@ -40,42 +40,27 @@ class GameBoard:
 
     def updateBoard(self, pos, face, size):
         if self.gridValues[pos] >= size:
-            return
+            return False
         self.gridValues[pos] = size
         piece = self.gamePieces[pos]
         piece.setSize(size)
         piece.setFace(face)
         if face == gamePiece.XFACE:
             piece.setColor(self.colorX)
-            self.gridFaces[pos[0]][pos[1]] = "X"
+            self.gridFaces[pos[1]][pos[0]] = "X"
         else:
             piece.setColor(self.colorO)
-            self.gridFaces[pos[0]][pos[1]] = "O"
+            self.gridFaces[pos[1]][pos[0]] = "O"
+        return True
+
+    def checkWinner(self):
+        return checkWinner(self.gridFaces)
 
     def isHovering(self):
         return False
 
     def toString(self):
         return "Only here to satisfy buttonAssets class"
-
-
-
-
-
-def turn(board, num):
-    if num % 2 == 1:
-        print("Player X Turn")
-        i = (int(input("Enter a row number:")) - 1)
-        j = (int(input("Enter a column number:")) - 1)
-        board[i][j] = "X"
-
-    elif num % 2 == 0:
-        print("Player O Turn")
-        i = (int(input("Enter a row number:")) - 1)
-        j = (int(input("Enter a column number:")) - 1)
-        board[i][j] = "O"
-
-    return board
 
 
 def checkWinner(board):
@@ -110,12 +95,12 @@ def checkWinner(board):
     if x_win == False and o_win == False:
         num = 0
         for i in range(len(board)):
-            num += board[i].count(" ")
+            num += board[i].count("")
 
         if num == 0:
-            return "tie"
+            return "full"
         else:
-            return "unfinished"
+            return "no_win"
 
 
 def separateColumns(board):

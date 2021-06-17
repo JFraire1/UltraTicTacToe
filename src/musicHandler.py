@@ -9,36 +9,43 @@ class musicHandler():
     gameTrackNum = 0
     gameTrackList = asset.gameMusicList
     menuTrackList = asset.musicList
-    # todo get gameplay music name from asset
     musicOn = True
     volume = 1.0
 
-    def setVolume(self, vol):
+    @staticmethod
+    def setVolume(vol):
         musicHandler.volume = vol
         if musicHandler.musicOn:
             mixer.music.set_volume(vol)
 
-    def setGameMusic(self=None):
+    @staticmethod
+    def setGameMusic():
         musicHandler.isGaming = True
 
-    def changeSong(self=None):
+    @staticmethod
+    def changeSong():
         musicHandler.stop()
         musicHandler.musicLoop()
 
-    def setMenuMusic(self=None):
+    @staticmethod
+    def setMenuMusic():
         musicHandler.isGaming = False
 
-    def off(self=None):
+    @staticmethod
+    def off():
         mixer.music.set_volume(0.0)
 
-    def on(self=None):
+    @staticmethod
+    def on():
         mixer.music.set_volume(musicHandler.volume)
 
-    def musicSwitch(self=None):
+    @staticmethod
+    def musicSwitch():
         musicHandler.musicOn = not musicHandler.musicOn
         return musicHandler.musicOn
 
-    def musicLoop(self=None):
+    @staticmethod
+    def musicLoop():
         if mixer.music.get_busy():
             return
         else:
@@ -53,6 +60,7 @@ class musicHandler():
                 mixer.music.play(0, 0, 10)
                 musicHandler.menuTrackNum += 1
 
-    def stop(self=None):
+    @staticmethod
+    def stop():
         if mixer.music.get_busy():
             mixer.music.stop()

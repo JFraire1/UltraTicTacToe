@@ -25,13 +25,29 @@ class ColorsFontsImages:
     sound4 = r'sound\glitch.wav'
     sound5 = r'sound\slotWheel.wav'
     sound6 = r'sound\clickSpin.wav'
-    soundList = (sound1, sound2, sound3, sound4, sound5, sound6)
+    sound7 = r'sound\addPieceSound.wav'
+    sound8 = r'sound\winGame.wav'
+    sound9 = r'sound\tieGame.wav'
+    sound10 = r'sound\endGameClick.wav'
+    sound11 = r'sound\rejectSound.wav'
+    sound12 = r'sound\pickupSound.wav'
+    sound13 = r'sound\putDownSound.wav'
+
+    soundList = (sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13)
+
     CLICKSOUND = 0
     CLICK2SOUND = 1
     GAMEOVERSOUND = 2
     GLITCHSOUND = 3
     SLOTWHEELSOUND = 4
     SPINCLICK = 5
+    PIECEADDED = 6
+    GAMEWIN = 7
+    GAMETIE = 8
+    ENDGAMECLICK = 9
+    REJECTSOUND = 10
+    PICKUPSOUND = 11
+    PUTDOWNSOUND = 12
 
     slotMachineSelectedP1 = r'images\slotAnimation\frame 1-01.jpg'
     slotMachineImage1 = r'images\slotAnimation\frame 2-01.jpg'

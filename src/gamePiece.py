@@ -14,7 +14,7 @@ class gamePiece:
     UPPERBOUND = 2
     LOWERBOUND = 3
 
-    DEMOLIST = (15, 25, 35)
+    DEMOLIST = (15, 25, 32)
 
     def __init__(self, screen, face, color, size, x=0, y=0):
         self.pos = x, y
@@ -34,6 +34,7 @@ class gamePiece:
     def _findI(self):
         for i in range(len(gamePiece.DEMOLIST)):
             if gamePiece.DEMOLIST[i] == self.size:
+                print(i)
                 return i
 
     def _setText(self):
