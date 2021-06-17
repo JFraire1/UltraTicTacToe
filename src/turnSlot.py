@@ -9,7 +9,7 @@ class turnSlot:
     P2SELECT = 0
     P1SELECT = 7
 
-    def __init__(self, screen, x, y, hasOutline=False, outLineWidth=4):
+    def __init__(self, screen, x, y, hasOutline=False, outLineWidth=4, outLineColor=asset.neonPink):
         self.screen = screen
         self.pos = x, y
         self.index = 7
@@ -23,6 +23,8 @@ class turnSlot:
         self.doneSpinning = False
         self.hasOutline = hasOutline
         self.outLineWidth = outLineWidth
+        self.outLineColor = outLineColor
+        self.flash = 0
 
     def valueUpdated(self):
         self.doneSpinning = False
@@ -58,7 +60,7 @@ class turnSlot:
             return
         self.screen.blit(self.animation[self.index], self.pos)
         if self.hasOutline:
-            pygame.draw.rect(self.screen, asset.neonPink, [self.pos[0] - 6, self.pos[1] - 6, 62, 62],
+            pygame.draw.rect(self.screen, self.outLineColor, [self.pos[0] - 6, self.pos[1] - 6, 62, 62],
                              self.outLineWidth)
 
     def _spinShow(self):
@@ -70,4 +72,4 @@ class turnSlot:
                              self.outLineWidth)
 
     def toString(self):
-        return "None rn lol"
+        return "Only here to work with buttonAssets class"

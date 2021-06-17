@@ -4,54 +4,59 @@ from ColorsFontsImages import ColorsFontsImages as asset
 from gamePiece import gamePiece
 
 class GameBoard:
-    HORIZONTALLINE1 = (asset.white, [37.5, 100, 400, 20], 0, 10)
-    HORIZONTALLINE2 = (asset.white, [37.5, 400, 400, 20], 0, 10)
-    VERTICALLINE1 = (asset.white, [50, 100, 20, 400], 0, 10)
-    VERTICALLINE2 = (asset.white, [50, 375, 20, 400], 0, 10)
-    # todo update with actual positions and sizes
+    HORIZONTALLINE1 = (asset.white, [55, 220, 390, 20], 0, 10)
+    HORIZONTALLINE2 = (asset.white, [55, 330, 390, 20], 0, 10)
+    VERTICALLINE1 = (asset.white, [175, 115, 20, 350], 0, 10)
+    VERTICALLINE2 = (asset.white, [295, 115, 20, 350], 0, 10)
 
     LINELIST = (HORIZONTALLINE1, HORIZONTALLINE2, VERTICALLINE1, VERTICALLINE2)
 
-    GAMEPIECEPOS = ((20, 50, 70), (90, 120, 150)) # todo update with actual positions
+    GAMEPIECEPOS = ((125, 245, 365), (175, 285, 395))
 
     def __init__(self, screen, colorX, colorO):
         self.screen = screen
         self.colorX = colorX
         self.colorO = colorO
         self.gridDisplay = []
-        for i in LINELIST:
+        for i in GameBoard.LINELIST:
             self.gridDisplay.append((self.screen, i[0], i[1], i[2], i[3]))
         self.gridValues = {}
         self.gamePieces = {}
+        self.gridFaces = [["", "", ""], ["", "", ""], ["", "", ""]]
         for i in range(3):
             gPosX = GameBoard.GAMEPIECEPOS[0][i]
             for j in range(3):
                 gPosY = GameBoard.GAMEPIECEPOS[1][j]
-                self.gridValues[(i, j)] = ("", 0)
-                self.gamePieces[(i, j)] = gamePiece(gamePiece.XFACE, colorX, gamePiece.SIZELARGE, gPosX, gPosY)
-        self.turnCount = 0
+                self.gridValues[(i, j)] = (0)
+                self.gamePieces[(i, j)] = gamePiece(self.screen, gamePiece.XFACE, asset.white, gamePiece.SIZELARGE, gPosX, gPosY)
+        self.turn = 0
 
-    def iterateTurn(self):
-        self.turnCount += 1
-        # todo actually do something here? might not be needed
-
-    def drawBoard(self):
+    def show(self):
         for i in self.gridDisplay:
             pygame.draw.rect(i[0], i[1], i[2], i[3], i[4])
         for gridPos in self.gridValues:
-            if self.gridValues[gridPos] != ("", 0):
+            if self.gridValues[gridPos] != (0):
                 self.gamePieces[gridPos].show()
 
     def updateBoard(self, pos, face, size):
-        # todo this is looking kinda promising, actually
-        # just make the board, see the position, (0,0) of the inserted piece,
-        # its face, and double check to make sure the size is greater than the piece already there
-        # find size of existing piece: self.gridValues[pos][1]
-        # replace if need be self.gridValues[pos] = (face, size)
-        # if need be, update size of piece at that position
-        # x = self.gamePieces[pos]
-        # x.setSize(size)
-        # x.setFace(face)
+        if self.gridValues[pos] >= size:
+            return
+        self.gridValues[pos] = size
+        piece = self.gamePieces[pos]
+        piece.setSize(size)
+        piece.setFace(face)
+        if face == gamePiece.XFACE:
+            piece.setColor(self.colorX)
+            self.gridFaces[pos[0]][pos[1]] = "X"
+        else:
+            piece.setColor(self.colorO)
+            self.gridFaces[pos[0]][pos[1]] = "O"
+
+    def isHovering(self):
+        return False
+
+    def toString(self):
+        return "Only here to satisfy buttonAssets class"
 
 
 

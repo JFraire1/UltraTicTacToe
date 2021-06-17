@@ -5,6 +5,7 @@ from turnSlot import turnSlot
 from checkBox import checkBox
 from slider import Slider
 
+
 class ButtonAssets:
     def __init__(self, screen):
         self.screen = screen
@@ -72,13 +73,6 @@ class ButtonAssets:
         self.buttonList.append(temp)
         return temp
 
-    def inProgressButton(self):
-        temp = textFormat(self.screen, "In Progress :|", False, 0, 0, 0, True, asset.black,
-                          -1, -1, (asset.joystix, 35), 0, 200, asset.neonPink, (100, 100, 100),
-                          50, 0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
-        self.buttonList.append(temp)
-        return temp
-
     def pauseText(self):
         temp = textFormat(self.screen, "Pause", False, 0, 0, 0, True, asset.black, -1, -1,
                           (asset.joystix, 50), 0, 100, asset.neonPink, (100, 100, 100), 50,
@@ -95,8 +89,8 @@ class ButtonAssets:
 
     def musicCheckBox(self):
         temp = checkBox(self.screen, True, "X", True, -1, -1, 4, False, asset.white, 20,
-                        20, (asset.joystix, 40), 296, 149.6, asset.white, asset.neonPink,-20, 3,
-                        -1,-1)
+                        20, (asset.joystix, 40), 296, 149.6, asset.white, asset.neonPink, -20, 3,
+                        -1, -1)
         self.buttonList.append(temp)
         return temp
 
@@ -181,6 +175,78 @@ class ButtonAssets:
     def spinButton(self):
         temp = textFormat(self.screen, "Spin", True, 8, 20, 4, False, asset.black, -1, -1,
                           (asset.joystix, 12), 0, 270, asset.white, asset.neonPink, 255, 2,
+                          textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp)
+        return temp
+
+    def turnDisplay(self):
+        temp = textFormat(self.screen, "X Turn:", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 16), 85, 30, asset.white, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "X Turn:", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 16), 88, 33, asset.black, (100, 100, 100), 50,
+                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+        return temp, temp2
+
+    def firstText(self):
+        temp = textFormat(self.screen, "First Move:", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 14), 325, 165, asset.white, (100, 100, 100), 50,
+                          0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "First Move:", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 14), 328, 168, asset.black, (100, 100, 100), 50,
+                           0, textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+
+    def num1Text(self):
+        temp = textFormat(self.screen, "x2", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 20), 255, 50, asset.white, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "x2", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 20), 258, 53, asset.black, (100, 100, 100), 50,
+                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+        return temp, temp2
+
+    def num2Text(self):
+        temp = textFormat(self.screen, "x4", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 20), 367, 50, asset.white, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "x4", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 20), 370, 53, asset.black, (100, 100, 100), 50,
+                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+        return temp, temp2
+
+    def num3Text(self):
+        temp = textFormat(self.screen, "x8", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 20), 454, 50, asset.white, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "x8", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 20), 457, 53, asset.black, (100, 100, 100), 50,
+                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+        return temp, temp2
+
+    def playerDisplayText(self):
+        temp = textFormat(self.screen, "P1", False, 0, 0, 0, True, asset.black, -1, -1,
+                          (asset.joystix, 40), 85, 45, asset.white, (100, 100, 100), 50,
+                          0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        temp2 = textFormat(self.screen, "P1", False, 0, 0, 0, True, asset.black, -1, -1,
+                           (asset.joystix, 40), 90, 50, asset.black, (100, 100, 100), 50,
+                           0, -1, -1, textFormat.ENLARGENOMOVEMENT)
+        self.buttonList.append(temp2)
+        self.buttonList.append(temp)
+        return temp, temp2
+
+    def hitBox(self):
+        temp = textFormat(self.screen, "", True, 8, -1, 4, False, asset.black, 120, 120,
+                          (asset.joystix, 15), 0, 240, asset.white, asset.neonPink, 255, 2,
                           textFormat.ALIGNMENTCENTER, -1, textFormat.ENLARGENOMOVEMENT)
         self.buttonList.append(temp)
         return temp

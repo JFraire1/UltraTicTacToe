@@ -7,7 +7,7 @@ class gamePiece:
 
     SIZESMALL = 15
     SIZEMEDIUM = 25
-    SIZELARGE = 35
+    SIZELARGE = 32
 
     LEFTBOUND = 0
     RIGHTBOUND = 1
@@ -26,6 +26,7 @@ class gamePiece:
         self.textPos = self._setTextPos()
         self.bounds = self._getBounds()
         self.i = self._findI()
+        self.isBeingDragged = False
 
     def _setTextPos(self):
         return self.pos[0] - self.text.get_width() / 2, self.pos[1] - self.text.get_height() / 2
@@ -44,6 +45,14 @@ class gamePiece:
     def _getBounds(self):
         return self.pos[0] - self.size, self.pos[0] + self.size, self.pos[1] - self.size, self.pos[1] + self.size
 
+    def setSize(self, size):
+        self.size = size
+        self.text = self._setText()
+        self.textPos = self._setTextPos()
+
+    def setBeingDragged(self, switch):
+        self.isBeingDragged = switch
+
     def cycleSize(self):
         self.i += 1
         self.i %= len(gamePiece.DEMOLIST)
@@ -59,6 +68,9 @@ class gamePiece:
 
     def setPos(self, pos):
         self.pos = pos
+        self.text = self._setText()
+        self.textPos = self._setTextPos()
+
 
     def setColor(self, color):
         self.color = color
