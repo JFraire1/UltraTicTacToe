@@ -1,7 +1,7 @@
 class ColorsFontsImages:
     neonPink = (255, 0, 170)
     darkPurple = (23, 12, 26)
-    purple = (230,160,230)
+    purple = (230, 160, 230)
     white = (255, 255, 255)
     black = (0, 0, 0)
     red = (200, 10, 10)
@@ -11,8 +11,11 @@ class ColorsFontsImages:
     green = (43, 175, 43)
     gray = (100, 100, 100)
     lightGray = (190, 190, 190)
+
     joystix = r'fonts\joystix monospace.ttf'
+    icon = r'images\icon.png'
     mainBackground = r'images\background.jpg'
+
     music1 = r'sound\mainBacking.mp3'
     music2 = r'sound\hipHopOne.mp3'
     music3 = r'sound\makeYaThink.mp3'
@@ -33,7 +36,8 @@ class ColorsFontsImages:
     sound12 = r'sound\pickupSound.wav'
     sound13 = r'sound\putDownSound.wav'
 
-    soundList = (sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13)
+    soundList = (
+    sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13)
 
     CLICKSOUND = 0
     CLICK2SOUND = 1
@@ -63,10 +67,8 @@ class ColorsFontsImages:
     slotMachineImageB = r'images\slotAnimation\frame 12-01.jpg'
     slotMachineImageC = r'images\slotAnimation\frame 13-01.jpg'
     slotMachineImageD = r'images\slotAnimation\frame 14-01.jpg'
-
     slotAnimationList = (slotMachineSelectedP1, slotMachineImage1, slotMachineImage2,
                          slotMachineImage3, slotMachineImage4, slotMachineImage5,
                          slotMachineImage6, slotMachineSelectedP2, slotMachineImage8,
                          slotMachineImageA, slotMachineImageB, slotMachineImageC,
                          slotMachineImageD)
-
