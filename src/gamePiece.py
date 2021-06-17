@@ -34,7 +34,6 @@ class gamePiece:
     def _findI(self):
         for i in range(len(gamePiece.DEMOLIST)):
             if gamePiece.DEMOLIST[i] == self.size:
-                print(i)
                 return i
 
     def _setText(self):

@@ -357,12 +357,16 @@ def gameLoop(colorP1, colorP2, XPlayer, first, winP1=0, winP2=0):
         else:
             if XTurn:
                 if piecesAmountX[piece.size] == 0:
+                    draggedPiece.setBeingDragged(False)
+                    soundHandler.playSound(asset.REJECTSOUND)
                     return
                 piecesAmountX[piece.size] -= 1
                 for j in numTexts[piece.size]:
                     j.setText("x" + str(piecesAmountX[piece.size]))
             else:
                 if piecesAmountO[piece.size] == 0:
+                    draggedPiece.setBeingDragged(False)
+                    soundHandler.playSound(asset.REJECTSOUND)
                     return
                 piecesAmountO[piece.size] -= 1
                 for j in numTexts[piece.size]:
