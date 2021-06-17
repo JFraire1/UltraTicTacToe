@@ -1,4 +1,3 @@
 # UltraTicTacToe
-First Venture into PyGame
-
-https://youtu.be/6Z0q6zOtsIk
+<h2>My First Venture into PyGame</h2>
+  <a href = https://youtu.be/6Z0q6zOtsIk>Video Demo</a>
