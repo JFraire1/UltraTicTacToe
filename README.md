@@ -1,3 +1,4 @@
+<a name="top"></a>
 # UltraTicTacToe
 <h2>My First Venture into PyGame</h2>
 <h2><a href = https://youtu.be/6Z0q6zOtsIk>Video Demo</a></h2>
@@ -66,8 +67,7 @@
 <h2><a href = https://drive.google.com/drive/folders/1qhnHwZSnNnrkWEC6opB1V4Lhh6N9oSZU?usp=sharing>Development Progress Album</a></h2>
 <h2><a href = https://drive.google.com/drive/folders/1PHwmgekCXNMqBTmW3WicAFoTxPmihacf?usp=sharing>Original Music</a></h2>
 
-<a href = https://github.com/JFraire1/UltraTicTacToe/blob/main/README.md#ultratictactoe>Back to Top</a>
-
+<a href = #top>Back to Top</a>
 
 
   
